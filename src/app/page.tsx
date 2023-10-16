@@ -1,10 +1,12 @@
 import styles from "./styles.module.css";
+import Novedades from "@/components/Novedades";
+
 export default function Home() {
   return (
     <main>
       <img src="/portada_lg.png"></img>
       <div className="container mx-auto">
-        <p className="-mt-[420px] text-shadow-title text-sm w-3/5 mx-auto lg:text-6xl font-bold text-gray-50 text-center">
+        <p className="-mt-[400px] text-shadow-title text-sm w-3/5 mx-auto lg:text-6xl font-bold text-gray-50 text-center">
           CERVEZAS ARTESANAS Y DE IMPORTACIÓN
         </p>
       </div>
@@ -21,7 +23,7 @@ export default function Home() {
           Buscar
         </button>
       </form>
-      <div className="w-3/5 mx-auto opacity-60  mt-20">
+      <div className="w-3/5 mx-auto opacity-60  mt-10">
         <p className="text-white px-4 py-2 bg-black rounded-lg border border-1 text-xl font-bold italic opacity-100">
           Descubre un mundo de sabor y tradición en la palma de tu mano. En
           nuestra tienda en línea, te ofrecemos una selección excepcional de
@@ -31,6 +33,7 @@ export default function Home() {
       <h1 className="mt-20 text-dark text-5xl font-bold text-center">
         NOVEDADES
       </h1>
-    </main>
+      <Novedades/>
+     </main>
   );
 }
