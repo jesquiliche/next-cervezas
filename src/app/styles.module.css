@@ -1,0 +1,32 @@
+.Main {
+  background-position: 0%;
+  background-image: url('/portada_lg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; 
+}
+
+@media (max-width: 767px) {
+  .Main {
+    background-image: url('/imagen-movil.png');
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .Main {
+    background-image: url('/imagen-tablet-vertical.png');
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .Main {
+    background-image: url('/imagen-tablet-horizontal.png');
+    background-size: 50%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Main {
+    background-image: url('/portada_lg.png');
+  }
+}
