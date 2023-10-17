@@ -72,3 +72,24 @@ export interface Cerveza {
     };
   }
   
+
+  export interface Pais {
+    id: number;
+    attributes: {
+      Nombre: string;
+      createdAt: string;
+      updatedAt: string;
+      publishedAt: string;
+    };
+  }
+
+  export interface Tipo {
+    id: number;
+    attributes: {
+      nombre: string;
+      createdAt: string;
+      updatedAt: string;
+      publishedAt: string;
+    };
+  }
+  
