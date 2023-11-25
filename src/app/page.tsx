@@ -1,5 +1,7 @@
+import { Nova_Square } from "next/font/google";
 import styles from "./styles.module.css";
 import Novedades from "@/components/Novedades";
+//np,mimport Novedades from "@/components/Novedades";
 
 export default function Home() {
   return (
@@ -33,7 +35,7 @@ export default function Home() {
       <h1 className="mt-20 text-dark text-5xl font-bold text-center">
         NOVEDADES
       </h1>
-      <Novedades/>
+        <Novedades/>
      </main>
   );
 }
