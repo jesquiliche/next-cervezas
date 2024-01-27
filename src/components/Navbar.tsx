@@ -1,5 +1,6 @@
 import { Tipo } from "@/interfaces/interfaces";
 import { fetchPaises, fetchTipos } from "@/services/api";
+import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = async () => {
@@ -13,17 +14,17 @@ const Navbar = async () => {
   return (
     <>
       <nav className="bg-white border opacity-95  w-full shadow-md fixed z-50">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#" className="flex items-center">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
+          <Link href="#" className="flex items-center">
             <img src="/cerveza.png" className="h-10 mr-3" alt="Flowbite Logo" />
-            <span className="hidden md:block self-center  text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="hidden md:block self-center  text-2xl font-semibold whitespace-nowrap ">
               Cervezas de importación
             </span>
-          </a>
+          </Link>
           <button
             data-collapse-toggle="navbar-dropdown"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
             aria-controls="navbar-dropdown"
             aria-expanded="false"
           >
@@ -50,20 +51,20 @@ const Navbar = async () => {
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0">
               <li>
-                <a
+                <Link
                   href="#"
-                  className="block py-2 pl-3 pr-4  bg-blue-700 rounded md:bg-transparent  md:p-0"
+                  className="block py-2 pl-3 pr-4  bg-blue-700 rounded  hover:text-yellow-400 md:bg-transparent  md:p-0"
                   aria-current="page"
                 >
                   Inicio
 
-                </a>
+                </Link>
               </li>
               <li>
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownNavbar"
-                  className="flex items-center justify-between w-full py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white "
+                  className="flex items-center justify-between w-full py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto"
                 >
                   Pais{" "}
                   <svg
@@ -85,7 +86,7 @@ const Navbar = async () => {
                 {/* Dropdown menu */}
                 <div
                   id="dropdownNavbar"
-                  className="z-10 opacity-100 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                  className="z-10 opacity-100 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
                 >
                   <ul
                     className="border-1 rounded-lg shadow-md py-2 text-md text-gray-700"
@@ -94,12 +95,12 @@ const Navbar = async () => {
                     {paises &&
                       paises.map((p) => (
                         <li key={p.id}>
-                          <a
+                          <Link
                             href="#"
                             className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
                           >
                             {p.nombre}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                   </ul>
@@ -109,7 +110,7 @@ const Navbar = async () => {
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownTipos"
-                  className="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                  className="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto  "
                 >
                   Estilo{" "}
                   <svg
@@ -134,18 +135,18 @@ const Navbar = async () => {
                   className="z-10  hidden absolute font-normal divide-y divide-gray-100 rounded-lg shadow   w-[500px]"
                 >
                   <ul
-                    className="grid grid-cols-2 md:grid-cols-3 border-1  rounded-xl shadow-md bg-white py-1 text-md text-gray-700 dark:text-gray-400 "
+                    className="grid grid-cols-2 md:grid-cols-3 border-1  rounded-xl shadow-md bg-white py-1 text-md text-gray-700"
                     aria-labelledby="dropdownLargeButton"
                   >
                     {tipos &&
                       tipos.map((t: Tipo) => (
                         <li key={t.id}>
-                          <a
+                          <Link
                             href="#"
                             className="block text-dark hover:text-white px-4 hover:bg-yellow-400 hover:rounded-md"
                           >
                             {t.nombre}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                   </ul>
@@ -153,20 +154,20 @@ const Navbar = async () => {
               </li>
 
               <li>
-                <a
+                <Link
                   href="#"
-                  className="block py-2 pl-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pl-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 "
                 >
                   Contacto
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 "
                 >
                   <FaShoppingCart size="24px" className="" />
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

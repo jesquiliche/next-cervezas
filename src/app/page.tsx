@@ -9,10 +9,10 @@ export default function Home() {
           <img src="/cervezas.png" width="65%" alt="Cervezas" />
         </div>
         <div className="container mx-auto mt-20">
-          <p className="text-shadow-title text-sm  mx-auto lg:text-4xl italic font-bold text-gray-100 text-center">
+          <p className="text-shadow-title  mx-auto text-xl lg:text-4xl italic font-bold text-gray-100 text-center">
             CERVEZAS ARTESANAS Y DE IMPORTACIÓN
           </p>
-          <p className="text-sm italic w-11/12 mx-auto mt-5 lg:text-3xl font-bold text-dark text-center">
+          <p className="text-md italic w-11/12 mx-auto mt-5 lg:text-3xl font-bold text-dark text-center">
             La mejor seleción de cervezas
           </p>
        </div>
