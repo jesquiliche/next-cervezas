@@ -13,7 +13,7 @@ const CervezaComponent = ({cerveza}:Props) => {
             <h1 className="text-md italic font-bold">{cerveza.pais}</h1>
             </div>
             <img src={cerveza?.foto} />
-            <h2 className="text-center text-md font-bold">{cerveza.nombre}</h2>
+            <h2 className="text-center text-sm font-bold">{cerveza.nombre}</h2>
             <button className="bg-yellow-400 text-white rounded-md p-2 ">Añadir a carrito</button>
           </div>
     </>
