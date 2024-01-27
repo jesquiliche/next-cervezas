@@ -52,7 +52,7 @@ const Navbar = async () => {
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0">
               <li>
                 <Link
-                  href="#"
+                  href="/"
                   className="block py-2 pl-3 pr-4  bg-blue-700 rounded  hover:text-yellow-400 md:bg-transparent  md:p-0"
                   aria-current="page"
                 >
@@ -142,7 +142,7 @@ const Navbar = async () => {
                       tipos.map((t: Tipo) => (
                         <li key={t.id}>
                           <Link
-                            href="#"
+                            href={`/Tipos/${t.id}`}
                             className="block text-dark hover:text-white px-4 hover:bg-yellow-400 hover:rounded-md"
                           >
                             {t.nombre}
