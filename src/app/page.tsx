@@ -1,41 +1,22 @@
-import { Nova_Square } from "next/font/google";
-import styles from "./styles.module.css";
 import Novedades from "@/components/Novedades";
 //np,mimport Novedades from "@/components/Novedades";
 
 export default function Home() {
   return (
     <main>
-      <img src="/portada_lg.png"></img>
-      <div className="container mx-auto">
-        <p className="-mt-[400px] text-shadow-title text-sm w-3/5 mx-auto lg:text-6xl font-bold text-gray-50 text-center">
-          CERVEZAS ARTESANAS Y DE IMPORTACIÓN
-        </p>
+      <div className="grid grid-cols-2 py-6 mx-auto bg-yellow-400">
+        <div className="w-11/12 mx-auto mt-10 flex justify-center items-center">
+          <img src="/cervezas.png" width="65%" alt="Cervezas" />
+        </div>
+        <div className="container mx-auto mt-20">
+          <p className="text-shadow-title text-sm  mx-auto lg:text-4xl italic font-bold text-gray-100 text-center">
+            CERVEZAS ARTESANAS Y DE IMPORTACIÓN
+          </p>
+          <p className="text-sm italic w-11/12 mx-auto mt-5 lg:text-3xl font-bold text-dark text-center">
+            La mejor seleción de cervezas
+          </p>
+       </div>
       </div>
-      <form className="flex items-center space-x-4 w-1/5 mx-auto mt-10 mb-7">
-        <input
-          type="text"
-          placeholder="Buscar..."
-          className="px-4 py-2 border rounded-md w-48 opacity-60 focus:outline-none focus:ring focus:border-blue-300"
-        />
-        <button
-          type="submit"
-          className="px-4 py-2 bg-yellow-300 text-dark font-bold rounded-md border-3 hover:bg-yellow-500"
-        >
-          Buscar
-        </button>
-      </form>
-      <div className="w-3/5 mx-auto opacity-60  mt-10">
-        <p className="text-white px-4 py-2 bg-black rounded-lg border border-1 text-xl font-bold italic opacity-100">
-          Descubre un mundo de sabor y tradición en la palma de tu mano. En
-          nuestra tienda en línea, te ofrecemos una selección excepcional de
-          cervezas de importación de los rincones más remotos del planeta.
-        </p>
-      </div>
-      <h1 className="mt-20 text-dark text-5xl font-bold text-center">
-        NOVEDADES
-      </h1>
-        <Novedades/>
-     </main>
+    </main>
   );
 }

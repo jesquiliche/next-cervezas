@@ -1,27 +1,22 @@
-import { Pais,Tipo } from "@/interfaces/interfaces";
+import { Tipo } from "@/interfaces/interfaces";
 import { fetchPaises, fetchTipos } from "@/services/api";
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from "react-icons/fa";
 
-const Navbar = async() => {
-  
-  const paises:Pais[]=await fetchPaises();
-  console.log("Entro")
-  console.log(paises);
-  const tipos:Tipo[]=await fetchTipos();
-  console.log("Entro")
-;  console.log(tipos);
-  
+const Navbar = async () => {
+  const paisesData = await fetchPaises();
+
+  const paises = paisesData?.data;
+
+  const tiposData = await fetchTipos();
+  const tipos = tiposData.data;
+
   return (
     <>
-      <nav className="bg-white border text-yellow-400  border-y-yellow-900 dark:bg-gray-900 dark:border-gray-700   w-full shadow-xl fixed z-50">
+      <nav className="bg-white border opacity-95  w-full shadow-md fixed z-50">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#" className="flex items-center">
-            <img
-              src="/cerveza.png"
-              className="h-10 mr-3"
-              alt="Flowbite Logo"
-            />
-            <span className="self-center  text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <img src="/cerveza.png" className="h-10 mr-3" alt="Flowbite Logo" />
+            <span className="hidden md:block self-center  text-2xl font-semibold whitespace-nowrap dark:text-white">
               Cervezas de importación
             </span>
           </a>
@@ -57,17 +52,18 @@ const Navbar = async() => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4  bg-blue-700 rounded md:bg-transparent text-yellow-400 md:p-0"
+                  className="block py-2 pl-3 pr-4  bg-blue-700 rounded md:bg-transparent  md:p-0"
                   aria-current="page"
                 >
                   Inicio
+
                 </a>
               </li>
               <li>
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownNavbar"
-                  className="flex items-center justify-between w-full py-2 pl-3 pr-4 text-yellow-400 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                  className="flex items-center justify-between w-full py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white "
                 >
                   Pais{" "}
                   <svg
@@ -92,29 +88,28 @@ const Navbar = async() => {
                   className="z-10 opacity-100 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
                 >
                   <ul
-                    className="border-1 rounded-xl shadow-xl py-2 text-sm text-gray-700"
+                    className="border-1 rounded-lg shadow-md py-2 text-md text-gray-700"
                     aria-labelledby="dropdownLargeButton"
                   >
-                    {paises && paises.map((p)=>(
-                    <li key={p.id}>
-                      <a
-                        href="#"
-                        className="text-sm block px-4  hover:text-white text-yellow-400"
-                      >
-                         {p.nombre} 
-
-                      </a>
-                    </li>))}
-               
+                    {paises &&
+                      paises.map((p) => (
+                        <li key={p.id}>
+                          <a
+                            href="#"
+                            className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
+                          >
+                            {p.nombre}
+                          </a>
+                        </li>
+                      ))}
                   </ul>
-                
                 </div>
               </li>
               <li>
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownTipos"
-                  className="flex text-yellow-400 items-center justify-between w-full py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                  className="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                 >
                   Estilo{" "}
                   <svg
@@ -136,31 +131,31 @@ const Navbar = async() => {
                 {/* Dropdown menu */}
                 <div
                   id="dropdownTipos"
-                  className="z-10 opacity-100 hidden font-normal divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 w-[520px]"
+                  className="z-10  hidden absolute font-normal divide-y divide-gray-100 rounded-lg shadow   w-[500px]"
                 >
                   <ul
-                    className="grid grid-cols-3 border-1 rounded-xl shadow-xl bg-white py-1 text-sm text-gray-700 dark:text-gray-400"
+                    className="grid grid-cols-2 md:grid-cols-3 border-1  rounded-xl shadow-md bg-white py-1 text-md text-gray-700 dark:text-gray-400 "
                     aria-labelledby="dropdownLargeButton"
                   >
-                    {tipos && tipos.map((t)=>(
-                    <li key= {t.id} >
-                      <a
-                        href="#"
-                        className="block text-yellow-400 hover:text-white px-4 hover:bg-yellow-400 hover:rounded-md dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        {t.nombre}
-                      </a>
-                    </li>))}
-               
+                    {tipos &&
+                      tipos.map((t: Tipo) => (
+                        <li key={t.id}>
+                          <a
+                            href="#"
+                            className="block text-dark hover:text-white px-4 hover:bg-yellow-400 hover:rounded-md"
+                          >
+                            {t.nombre}
+                          </a>
+                        </li>
+                      ))}
                   </ul>
-                
                 </div>
               </li>
-              
+
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-yellow-400 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pl-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Contacto
                 </a>
@@ -170,7 +165,7 @@ const Navbar = async() => {
                   href="#"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
-                  <FaShoppingCart size="24px" className="text-yellow-400" />
+                  <FaShoppingCart size="24px" className="" />
                 </a>
               </li>
             </ul>
