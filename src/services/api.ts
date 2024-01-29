@@ -7,6 +7,7 @@ import {
   Graduacion,
   CervezaData,
   PaisesData,
+  TiposData,
 } from "@/interfaces/interfaces";
 
 export async function fetchCervezas() {
@@ -234,25 +235,28 @@ export async function fetchTiposQuery(query: string) {
     return []; // Debes devolver un valor adecuado en caso de error
   }
 }
-export async function fetchPaises(): Promise<PaisesData | undefined> {
+export async function fetchPaises(): Promise<PaisesData> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
-  try {
-    const response = await fetch(`${apiUrl}paises`);
 
-    if (!response.ok) {
-      throw new Error("No se pudieron obtener los datos de la API");
+  try {
+    const response = await fetch(`${apiUrl}paises`, {cache: "no-store"});
+    console.log(`${apiUrl}paises`);
+
+    if (!response.ok){
+      console.log(response.status,response.statusText) 
+      //throw new Error("No se pudieron obtener los datos de la API");
     }
 
     const data = await response.json();
-    console.log(data)
     return data;
     // Aquí puedes trabajar con los datos obtenidos de la API
   } catch (error) {
     console.error("Error al obtener datos:", error);
-
-    return;
+    // Manejar el error aquí según sea necesario
+    throw error; // Lanzar el error nuevamente para que el llamador lo maneje
   }
 }
+
 
 export async function fetchColores(): Promise<Color[] | any> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
@@ -273,22 +277,24 @@ export async function fetchColores(): Promise<Color[] | any> {
   }
 }
 
-export async function fetchTipos() {
+export async function fetchTipos(): Promise<TiposData> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
 
   try {
     const response = await fetch(`${apiUrl}tipos`);
 
     if (!response.ok) {
-      throw new Error("No se pudieron obtener los datos de la API");
+      console.log(await response.json)
+      //throw new Error("No se pudieron obtener los datos de la API");
     }
 
     const data = await response.json();
     return data;
     // Aquí puedes trabajar con los datos obtenidos de la API
   } catch (error) {
-    console.log(error);
-    return []; // Debes devolver un valor adecuado en caso de error
+    console.error("Error al obtener datos:", error);
+    // Manejar el error aquí según sea necesario
+    throw error; // Lanzar el error nuevamente para que el llamador lo maneje
   }
 }
 
@@ -297,10 +303,12 @@ export async function fetchTiposById(id:string): Promise<Tipo | undefined> {
 
 
   try {
-    const response = await fetch(`${apiUrl}tipos/${id}`, { cache: "no-store" });
-
+    const response = await fetch(`${apiUrl}tipos/${id}`);
+    console.log(`${apiUrl}tipos/${id}`)
     if (!response.ok) {
-      throw new Error("No se pudieron obtener los datos de la API");
+      console.log("fetchTiposById");
+      console.log(await response.status)
+      //throw new Error("No se pudieron obtener los datos de la API");
     }
 
     const data = await response.json();

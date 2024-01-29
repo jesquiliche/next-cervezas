@@ -1,4 +1,20 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+module.exports = {
+   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'laravelbirras-production.up.railway.app/',
+        port: '',
+        pathname: '/storage/images/**',
+      },
+    ],
+  },
+    reactStrictMode: true,
+    i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'es',
+    },
+    }
 
-module.exports = nextConfig
+//module.exports = nextConfig

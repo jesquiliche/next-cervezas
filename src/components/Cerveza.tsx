@@ -1,4 +1,5 @@
 import { Cerveza } from '@/interfaces/interfaces'
+import Image from 'next/image'
 import React from 'react'
 
 interface Props {
@@ -12,7 +13,7 @@ const CervezaComponent = ({cerveza}:Props) => {
             <h1 className="text-2xl italic font-bold text-red-600">{cerveza.precio} €</h1>
             <h1 className="text-md italic font-bold">{cerveza.pais}</h1>
             </div>
-            <img src={cerveza?.foto} />
+            <img src={cerveza.foto}  alt={cerveza.nombre} />
             <h2 className="text-center text-sm font-bold">{cerveza.nombre}</h2>
             <button className="bg-yellow-400 text-white rounded-md p-2 ">Añadir a carrito</button>
           </div>
