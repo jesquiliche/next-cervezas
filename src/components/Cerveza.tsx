@@ -8,7 +8,7 @@ interface Props {
 const CervezaComponent = ({cerveza}:Props) => {
   return (
     <>
-      <div key={cerveza.id} className="flex flex-col justify-between rounded-lg border-2 shadow-lg p-2">
+      <div key={cerveza.id} className="flex flex-col justify-between rounded-lg border-2 shadow-lg p-2 h-full">
             <div className="flex justify-between  items-center">
             <h1 className="text-2xl italic font-bold text-red-600">{cerveza.precio} €</h1>
             <h1 className="text-md italic font-bold">{cerveza.pais}</h1>

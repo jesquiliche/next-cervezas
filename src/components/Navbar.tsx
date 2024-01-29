@@ -96,7 +96,7 @@ const Navbar = async () => {
                       paises.map((p) => (
                         <li key={p.id}>
                           <Link
-                            href="#"
+                            href={`/Paises/${p.id}`}
                             className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
                           >
                             {p.nombre}
