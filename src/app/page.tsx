@@ -1,11 +1,13 @@
 import CervezasColores from "@/components/CervezasColores";
-import { inter } from '@/config/fonts';
+import Novedades from "@/components/Novedades";
+import Ofertas from "@/components/Ofertas";
+
 import { titleFont } from "@/config/fonts";
 
 export default function Home() {
   return (
     <main>
-      <div className="grid grid-cols-2 py-10 mx-auto bg-white w-10/12">
+      <div className="grid grid-cols-2 py-10 mx-auto bg-white w-11/12">
         <div className="mx-auto mt-20 flex justify-center items-center">
           <img src="/cervezas.png" width="80%" alt="Cervezas" />
         </div>
@@ -19,6 +21,9 @@ export default function Home() {
        </div>
       </div>
       <CervezasColores />
+      <Novedades/>
+      <Ofertas />
+      
     </main>
   );
 }

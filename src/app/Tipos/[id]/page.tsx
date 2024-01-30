@@ -37,9 +37,10 @@ const TipoHome: React.FC<EditProps> = async ({ params }) => {
   const cervezas: any | undefined = await fetchCervezasQuery(
     `tipo_id=${tipo?.id}&per_page=${20}`
   );
+  console.log(cervezas.data);
   
   return (
-    <div className="w-10/12 mx-auto py-32">
+    <div className="w-11/12 mx-auto py-32">
      <TipoComponet tipo={tipo} total={cervezas.total}/>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
         {cervezas?.data.map((c: Cerveza) => (
