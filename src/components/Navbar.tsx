@@ -1,3 +1,4 @@
+import { titleFont } from "@/config/fonts";
 import { Tipo } from "@/interfaces/interfaces";
 import { fetchPaises, fetchTipos } from "@/services/api";
 import Link from "next/link";
@@ -17,9 +18,9 @@ const Navbar = async () => {
       <nav className="bg-white border opacity-95  w-full shadow-md fixed z-50">
       
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
-          <Link href="#" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <img src="/LOGO.png" className="h-24 mr-3" alt="Logo" />
-            <span className="hidden md:block self-center  text-2xl font-semibold whitespace-nowrap ">
+            <span className={`${titleFont.className} hidden md:block self-center  text-2xl font-semibold whitespace-nowrap`}>
               El rincón de la cerveza
             </span>
           </Link>
