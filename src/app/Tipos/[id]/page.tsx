@@ -39,9 +39,9 @@ const TipoHome: React.FC<EditProps> = async ({ params }) => {
   );
   
   return (
-    <div className="w-10/12 mx-auto py-20">
+    <div className="w-10/12 mx-auto py-28">
      <TipoComponet tipo={tipo} total={cervezas.total}/>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
         {cervezas?.data.map((c: Cerveza) => (
           <div key={c.id}>
           <CervezaComponent cerveza={c}/>

@@ -13,12 +13,14 @@ const Navbar = async () => {
 
   return (
     <>
+      
       <nav className="bg-white border opacity-95  w-full shadow-md fixed z-50">
+      
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
           <Link href="#" className="flex items-center">
-            <img src="/cerveza.png" className="h-10 mr-3" alt="Flowbite Logo" />
+            <img src="/LOGO.png" className="h-24 mr-3" alt="Logo" />
             <span className="hidden md:block self-center  text-2xl font-semibold whitespace-nowrap ">
-              Cervezas de importación
+              El rincón de la cerveza
             </span>
           </Link>
           <button
