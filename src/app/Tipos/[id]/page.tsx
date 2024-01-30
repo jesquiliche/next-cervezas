@@ -37,8 +37,8 @@ const TipoHome: React.FC<EditProps> = async ({ params }) => {
   const cervezas: any | undefined = await fetchCervezasQuery(
     `tipo_id=${tipo?.id}&per_page=${20}`
   );
-  console.log(cervezas.data);
   
+
   return (
     <div className="w-11/12 mx-auto py-32">
      <TipoComponet tipo={tipo} total={cervezas.total}/>

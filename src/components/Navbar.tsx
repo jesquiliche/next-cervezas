@@ -3,6 +3,7 @@ import { Tipo } from "@/interfaces/interfaces";
 import { fetchPaises, fetchTipos } from "@/services/api";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
+import SearchForm from "./Busqueda";
 
 const Navbar = async () => {
   const paisesData = await fetchPaises();
@@ -14,16 +15,17 @@ const Navbar = async () => {
 
   return (
     <>
-      
       <nav className="bg-white border opacity-95  w-full shadow-md fixed z-50">
-      
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
           <Link href="/" className="flex items-center">
             <img src="/LOGO.png" className="h-24 mr-3" alt="Logo" />
-            <span className={`${titleFont.className} hidden md:block self-center  text-2xl font-semibold whitespace-nowrap`}>
+            <span
+              className={`${titleFont.className} hidden lg:block  text-2xl font-semibold whitespace-nowrap`}
+            >
               El rincón de la cerveza
             </span>
           </Link>
+          <SearchForm />
           <button
             data-collapse-toggle="navbar-dropdown"
             type="button"
@@ -53,16 +55,6 @@ const Navbar = async () => {
             id="navbar-dropdown"
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0">
-              <li>
-                <Link
-                  href="/"
-                  className="block py-2 pl-3 pr-4  bg-blue-700 rounded  hover:text-yellow-400 md:bg-transparent  md:p-0"
-                  aria-current="page"
-                >
-                  Inicio
-
-                </Link>
-              </li>
               <li>
                 <button
                   id="dropdownNavbarLink"

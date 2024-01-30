@@ -12,7 +12,7 @@ const Novedades = async () => {
       <h1 className={`${titleFont.className} text-4xl font-bold text-center mt-5 text-shadow-title text-yellow-400`}>
         Novedades
       </h1>
-      <div className="grid grid-cols-4 gap-4 w-11/12 mx-auto mt-4">
+      <div className="grid  grid-cols-2 md:grid-cols-4 gap-4 w-11/12 mx-auto mt-4">
         {cervezas && cervezas.map((c: Cerveza) => (
           <div
             key={c.id}

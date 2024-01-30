@@ -20,7 +20,7 @@ const CervezaComponent = ({ cerveza }: Props) => {
         </div>
         <img src={cerveza.foto} alt={cerveza.nombre} />
         {cerveza.oferta != 0 && (
-          <img src="/oferta.png" className="absolute top-20  h-20 w-20" />
+          <img src="/oferta.png" className="absolute top-20 h-20 w-20" />
         )}
         {cerveza.novedad != 0 && (
           <img
