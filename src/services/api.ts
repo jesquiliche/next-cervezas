@@ -14,7 +14,7 @@ export async function fetchCervezas() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
-    const response = await fetch(`${apiUrl}cervezas`, { cache: "no-store" });
+    const response = await fetch(`${apiUrl}cervezas`);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -34,9 +34,7 @@ export async function fetchCervezasPorPaises() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
-    const response = await fetch(`${apiUrl}consultaCervezasPorPais`, {
-      cache: "no-store",
-    });
+    const response = await fetch(`${apiUrl}consultaCervezasPorPais` );
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -56,9 +54,7 @@ export async function fetchCervezasPorTipos() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
-    const response = await fetch(`${apiUrl}consultaCervezasPorTipo`, {
-      cache: "no-store",
-    });
+    const response = await fetch(`${apiUrl}consultaCervezasPorTipo`);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -78,9 +74,7 @@ export async function fetchCervezasPorColores() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
-    const response = await fetch(`${apiUrl}consultaCervezasPorColores`, {
-      cache: "no-store",
-    });
+    const response = await fetch(`${apiUrl}consultaCervezasPorColores`);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -100,9 +94,7 @@ export async function fetchCervezasPorGraduaciones() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
-    const response = await fetch(`${apiUrl}consultaCervezasPorGraduaciones`, {
-      cache: "no-store",
-    });
+    const response = await fetch(`${apiUrl}consultaCervezasPorGraduaciones`);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -218,9 +210,7 @@ export async function fetchCervezasQuery(query: string) {
 export async function fetchTiposQuery(query: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
   try {
-    const response = await fetch(`${apiUrl}tipos?${query}`, {
-      cache: "no-store",
-    });
+    const response = await fetch(`${apiUrl}tipos?${query}`);
 
     if (!response.ok) {
       return false
@@ -239,7 +229,7 @@ export async function fetchPaises(): Promise<PaisesData> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
 
   try {
-    const response = await fetch(`${apiUrl}paises`, {cache: "no-store"});
+    const response = await fetch(`${apiUrl}paises`);
     console.log(`${apiUrl}paises`);
 
     if (!response.ok){
@@ -326,7 +316,7 @@ export async function fetchPaisesById(id:string): Promise<Pais | undefined> {
 
 
   try {
-    const response = await fetch(`${apiUrl}paises/${id}`, { cache: "no-store" });
+    const response = await fetch(`${apiUrl}paises/${id}`);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -347,9 +337,7 @@ export async function fetchPaisesById(id:string): Promise<Pais | undefined> {
 export async function fetchGraduaciones(): Promise<Graduacion[]> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
   try {
-    const response = await fetch(`${apiUrl}graduaciones`, 
-       { cache: "no-store" }
-    );
+    const response = await fetch(`${apiUrl}graduaciones`);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");

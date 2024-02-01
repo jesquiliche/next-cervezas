@@ -1,4 +1,4 @@
-import { fetchCervezasQuery, fetchPaisesById } from "@/services/api";
+import { fetchCervezasQuery, fetchPaises, fetchPaisesById } from "@/services/api";
 import { Cerveza, Pais } from "@/interfaces/interfaces";
 import CervezaComponent from "@/components/Cerveza";
 import PaisComponent from "./Paises";
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: EditProps) {
   };
 }
 
-/*export async function generateStaticParams() {
+export async function generateStaticParams() {
   
   // Obteniendo todos los posts desde un API Rest
   const cervezaData = await fetchPaises();
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: EditProps) {
   
   return cervezas.slice(0,8).map((c) => ({ id: c.id.toString() }));
 }
-  */
+
 
 const PaisHome: React.FC<EditProps> = async ({ params }) => {
   const id: string = params.id;
