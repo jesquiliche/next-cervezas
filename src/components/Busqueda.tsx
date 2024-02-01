@@ -1,17 +1,19 @@
 "use client";
+
+import { useRouter } from "next/navigation";
 import React, { useState, FormEvent, ChangeEvent } from "react";
 
 const SearchForm: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-
+  const router = useRouter();
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Aquí puedes realizar la acción que desees con la búsqueda
-    console.log("Realizando búsqueda:", searchQuery);
+
+    router.push(`/Busqueda/${searchQuery}`);
   };
 
   return (

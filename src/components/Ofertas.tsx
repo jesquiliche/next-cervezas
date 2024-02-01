@@ -1,7 +1,8 @@
 import { Cerveza } from "@/interfaces/interfaces";
 import { fetchCervezasQuery } from "@/services/api";
 import CervezaComponent from "./Cerveza";
-import { titleFont } from "@/config/fonts";
+import { PacificoFont, titleFont } from "@/config/fonts";
+import PaisComponent from "@/app/Paises/[id]/Paises";
 
 const Ofertas = async () => {
   const cervezasData = await fetchCervezasQuery("per_page=8 ");
@@ -10,7 +11,7 @@ const Ofertas = async () => {
 
   return (
     <>
-      <h1 className={`${titleFont.className} text-4xl font-bold text-center mt-5 text-shadow-title text-yellow-400`}>
+      <h1 className={`${PacificoFont.className} text-4xl font-bold text-center mt-5`}>
         Ofertas
       </h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-11/12 mx-auto mt-4">

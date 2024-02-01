@@ -1,4 +1,4 @@
-import { titleFont } from "@/config/fonts";
+import { PacificoFont, titleFont } from "@/config/fonts";
 import { Tipo } from "@/interfaces/interfaces";
 import { fetchPaises, fetchTipos } from "@/services/api";
 import Link from "next/link";
@@ -20,7 +20,7 @@ const Navbar = async () => {
           <Link href="/" className="flex items-center">
             <img src="/LOGO.png" className="h-24 mr-3" alt="Logo" />
             <span
-              className={`${titleFont.className} hidden lg:block  text-2xl font-semibold whitespace-nowrap`}
+              className={`${PacificoFont.className} hidden lg:block  text-3xl font-semibold whitespace-nowrap`}
             >
               El rincón de la cerveza
             </span>
