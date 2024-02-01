@@ -2,6 +2,7 @@ import { fetchCervezasQuery, fetchPaisesById } from "@/services/api";
 import { Cerveza, Pais } from "@/interfaces/interfaces";
 import CervezaComponent from "@/components/Cerveza";
 import PaisComponent from "./Paises";
+import ListaCervezas from "@/components/ListaCervezas";
 
 interface EditProps {
   params: {
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: EditProps) {
   const pais = await fetchPaisesById(params.id);
   return {
     title: `Cervezas de ${pais?.nombre}`,
-    description: `${pais?.descripcion}`
+    description: `${pais?.descripcion}`,
   };
 }
 
@@ -28,8 +29,7 @@ export async function generateMetadata({ params }: EditProps) {
   
   return cervezas.slice(0,8).map((c) => ({ id: c.id.toString() }));
 }
-  */  
-
+  */
 
 const PaisHome: React.FC<EditProps> = async ({ params }) => {
   const id: string = params.id;
@@ -37,17 +37,11 @@ const PaisHome: React.FC<EditProps> = async ({ params }) => {
   const cervezas: any | undefined = await fetchCervezasQuery(
     `pais_id=${pais?.id}&per_page=${20}`
   );
-  
+
   return (
     <div className="w-11/12 mx-auto py-32">
-     <PaisComponent pais={pais} total={cervezas.total}/>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
-        {cervezas?.data.map((c: Cerveza) => (
-          <div key={c.id}>
-          <CervezaComponent cerveza={c}/>
-          </div>
-        ))}
-        </div>
+      <PaisComponent pais={pais} total={cervezas.total} />
+      <ListaCervezas cervezas={cervezas.data} />
     </div>
   );
 };
