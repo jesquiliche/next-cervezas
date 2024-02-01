@@ -37,9 +37,13 @@ const BusquedaHome: React.FC<Props> = async ({ params }) => {
    const cervezas: any | undefined = await fetchCervezasQuery(
     `nombre=${nombre}&per_page=${20}`
   );
+  const total=cervezas.total;
   
   return (<div className="w-11/12 mx-auto py-32">
   <h1 className={`${PacificoFont.className} text-4xl font-bold text-center `}>Resultados de la Búsqueda</h1> 
+  <h1 className="text-2xl font-bold text-center mt-2">
+        Cervezas: {total}
+      </h1>
     <div className="w-11/12 mx-auto py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
         {cervezas?.data.map((c: Cerveza) => (

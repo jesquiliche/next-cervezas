@@ -1,4 +1,4 @@
-import { titleFont } from "@/config/fonts";
+import { PacificoFont, titleFont } from "@/config/fonts";
 import React from "react";
 
 const CervezasColores = () => {
@@ -12,7 +12,7 @@ const CervezasColores = () => {
             alt="Descripción de la imagen"
           />
           <h1
-            className={`${titleFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
+            className={`${PacificoFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
           >
             Por colores
           </h1>
@@ -26,7 +26,7 @@ const CervezasColores = () => {
             alt="Descripción de la imagen"
           />
           <h1
-            className={`${titleFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
+            className={`${PacificoFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
           >
             Por graduación
           </h1>
@@ -40,7 +40,7 @@ const CervezasColores = () => {
             alt="Descripción de la imagen"
           />
           <h1
-            className={`${titleFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
+            className={`${PacificoFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
           >
             Seleción
           </h1>
