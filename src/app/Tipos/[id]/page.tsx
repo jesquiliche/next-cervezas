@@ -1,4 +1,4 @@
-import { fetchCervezasQuery, fetchTiposById } from "@/services/api";
+import { fetchCervezasQuery, fetchTipos, fetchTiposById } from "@/services/api";
 import { Tipo, Cerveza } from "@/interfaces/interfaces";
 import CervezaComponent from "@/components/Cerveza";
 import TipoComponet from "./Tipo";
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: EditProps) {
   };
 }
 
-/*export async function generateStaticParams() {
+export async function generateStaticParams() {
   
   // Obteniendo todos los posts desde un API Rest
   const tipoData = await fetchTipos();
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: EditProps) {
   // Pasando el id de cada post (se utilizará más adelante)
   
   return tipos.slice(0,20).map((t) => ({ id: t.id.toString() }));
-}*/
+}
 
 const TipoHome: React.FC<EditProps> = async ({ params }) => {
   const id: string = params.id;
