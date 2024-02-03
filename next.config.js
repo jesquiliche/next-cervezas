@@ -4,9 +4,9 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'laravelbirras-production.up.railway.app/',
+        hostname: '**',
         port: '',
-        pathname: '/storage/images/**',
+       
       },
     ],
   },
