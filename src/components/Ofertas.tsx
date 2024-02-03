@@ -15,7 +15,9 @@ const Ofertas = async () => {
       >
         Ofertas
       </h1>
+      <div className="w-11/12 mx-auto">
       <ListaCervezas cervezas={cervezas} />
+      </div>
     </>
   );
 };
