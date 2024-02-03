@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Tipo, Pais, Color, Graduacion, PaisesData } from "@/interfaces/interfaces";
 import { fetchTipos, fetchPaises, fetchColores, fetchGraduaciones } from "@/services/api";
-
+import { useRouter,usePathname } from 'next/navigation'
 
 const Filter: React.FC = () => {
- 
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [tipos, setTipos] = useState<Tipo[]>([]);
   const [paises, setPaises] = useState<PaisesData |undefined>();
   const [colores, setColores] = useState<Color[]>([]);
@@ -52,7 +54,8 @@ const Filter: React.FC = () => {
     e.preventDefault();
     // Aquí puedes construir el query string con los valores de formData
     const queryString = `tipo_id=${formData.tipo}&pais_id=${formData.pais}&color_id=${formData.color}&graduacion_id=${formData.graduacion}`;
-
+    console.log(queryString);
+    router.push(`${pathname}?${queryString}`);
 //
     
     
