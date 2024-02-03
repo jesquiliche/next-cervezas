@@ -210,7 +210,7 @@ export async function fetchCervezasQuery(query: string) {
 export async function fetchCervezasQuery2(query: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
   try {
-    const response = await fetch(`${apiUrl}cervezas?${query}`,{cache: "no-store"});
+    const response = await fetch(`${apiUrl}cervezas?${query}`);
     console.log(`${apiUrl}cervezas?${query}`)
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
