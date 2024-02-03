@@ -1,4 +1,5 @@
 import { PacificoFont, titleFont } from "@/config/fonts";
+import Link from "next/link";
 import React from "react";
 
 const CervezasColores = () => {
@@ -33,6 +34,7 @@ const CervezasColores = () => {
         </div>
       </div>
       <div className="overflow-hidden">
+        <Link href="/Selecion">
         <div className="w-full h-full rounded-lg shadow-lg transition-transform duration-300 transform-gpu hover:scale-110">
           <img
             src="/cervezas-artesanales.webp"
@@ -45,6 +47,7 @@ const CervezasColores = () => {
             Seleción
           </h1>
         </div>
+        </Link>
       </div>
 
 

@@ -1,8 +1,12 @@
-import { fetchCervezas, fetchCervezasQuery, fetchCervezasQuery2 } from "@/services/api";
+import {
+  fetchCervezas,
+  fetchCervezasQuery,
+  fetchCervezasQuery2,
+} from "@/services/api";
 import { CervezaData, Cerveza } from "@/interfaces/interfaces";
 import ListaCervezas from "@/components/ListaCervezas";
+import Filter from "@/components/Filter";
 export default async function Page({
-  
   searchParams,
 }: {
   searchParams: {
@@ -17,9 +21,8 @@ export default async function Page({
   const tipo_id = Number(searchParams?.tipo_id || "");
   const color_id = Number(searchParams?.color_id || "");
   const graduacion_id = Number(searchParams?.graduacion_id || "");
-  console.log(searchParams)
-  console.log(color_id);
-  console.log(pais_id)
+  console.log(searchParams);
+ 
   const construirUrl = () => {
     const parametros = [];
 
@@ -40,17 +43,22 @@ export default async function Page({
   };
 
   const urlSearchParams = construirUrl();
-
-  console.log(urlSearchParams)
+console.log(urlSearchParams)
   const cervezasData: any = await fetchCervezasQuery2(urlSearchParams);
-
 
   const cervezas = cervezasData.data;
 
-console.log(`pais_id=${pais_id}&tipo_id=${tipo_id}&color_id=${color_id}`)
+  
   return (
     <div className="py-32 w-11/12 mx-auto">
-      <ListaCervezas cervezas={cervezas}/>
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="col-span-1">
+          <Filter />
+        </div>
+        <div className="col-span-1 md:col-span-5">
+          <ListaCervezas cervezas={cervezas} />
+        </div>
+      </div>
     </div>
   );
 }
