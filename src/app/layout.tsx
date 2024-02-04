@@ -3,8 +3,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Pie from "@/components/Pie";
+import { titleFont } from "@/config/fonts";
 
 const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "El rincón de la cerveza",
@@ -18,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <body className={`${titleFont.className} text-sm`}>
         <Navbar />
         {children}
         

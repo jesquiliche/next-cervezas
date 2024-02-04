@@ -82,7 +82,7 @@ const Filter: React.FC = () => {
             </option>
 
             {tipos.map((t) => (
-              <option key={t.id} value={t.id}>
+              <option key={t.id} value={t.id} className='text-sm'>
                 {t.nombre}
               </option>
             ))}
@@ -104,7 +104,7 @@ const Filter: React.FC = () => {
               </option>
   
             {paises && paises.data.map((p:Pais) => (
-              <option key={p.id} value={p.id}>
+              <option key={p.id} value={p.id} className='text-sm'>
                 {p.nombre}
               </option>
             ))}
@@ -126,7 +126,7 @@ const Filter: React.FC = () => {
               </option>
   
             {colores.map((c) => (
-              <option key={c.id} value={c.id}>
+              <option key={c.id} value={c.id} className='text-sm'>
                 {c.nombre}
               </option>
             ))}
@@ -148,7 +148,7 @@ const Filter: React.FC = () => {
               </option>
   
             {graduaciones.map((g) => (
-              <option key={g.id} value={g.id}>
+              <option key={g.id} value={g.id} className='text-sm'>
                 {g.nombre}
               </option>
             ))}

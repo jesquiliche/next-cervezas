@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: EditProps) {
   };
 }
 
-export async function generateStaticParams() {
+/*export async function generateStaticParams() {
   
   // Obteniendo todos los posts desde un API Rest
   const cervezaData = await fetchPaises();
@@ -33,7 +33,7 @@ export async function generateStaticParams() {
   // Pasando el id de cada post (se utilizará más adelante)
   
   return cervezas.map((c) => ({ id: c.id.toString()}));
-}
+}*/
 
 
 const PaisHome: React.FC<EditProps> = async ({ params,searchParams }) => {
@@ -44,7 +44,7 @@ const PaisHome: React.FC<EditProps> = async ({ params,searchParams }) => {
   const cervezas: any | undefined = await fetchCervezasQuery(
     `pais_id=${pais?.id}&per_page=${12}&page=${page}`
   );
-    console.log(searchParams)
+   
   return (
     <div className="w-11/12 mx-auto py-32">
       <PaisComponent pais={pais} total={cervezas.total} />

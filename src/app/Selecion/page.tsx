@@ -49,7 +49,7 @@ export default async function Page({
   };
 
   const urlSearchParams = construirUrl();
-console.log(urlSearchParams)
+
   const cervezasData: any = await fetchCervezasQuery2(urlSearchParams);
 
   const cervezas = cervezasData.data;
