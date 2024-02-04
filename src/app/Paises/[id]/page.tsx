@@ -32,7 +32,7 @@ export async function generateStaticParams() {
   // Extrayendo las rutas que se pre-renderizarán (basado en la cantidad de posts)
   // Pasando el id de cada post (se utilizará más adelante)
   
-  return cervezas.map((c) => ({ id: c.id.toString() }));
+  return cervezas.map((c) => ({ id: c.id.toString()}));
 }
 
 
@@ -42,7 +42,7 @@ const PaisHome: React.FC<EditProps> = async ({ params,searchParams }) => {
   const page= Number(searchParams?.page || "")
 
   const cervezas: any | undefined = await fetchCervezasQuery(
-    `pais_id=${pais?.id}&per_page=${8}&page=${page}`
+    `pais_id=${pais?.id}&per_page=${12}&page=${page}`
   );
     console.log(searchParams)
   return (

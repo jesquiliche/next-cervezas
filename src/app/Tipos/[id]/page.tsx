@@ -39,7 +39,7 @@ const TipoHome: React.FC<EditProps> = async ({ params,searchParams }) => {
   const tipo: Tipo | undefined = await fetchTiposById(id);
   const page= Number(searchParams?.page || "")
   const cervezas: any | undefined = await fetchCervezasQuery(
-    `tipo_id=${tipo?.id}&per_page=${8}&page=${page}`
+    `tipo_id=${tipo?.id}&per_page=${12}&page=${page}`
   );
 
   return (

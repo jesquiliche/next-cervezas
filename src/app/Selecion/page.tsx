@@ -28,7 +28,7 @@ export default async function Page({
   const construirUrl = () => {
     const parametros = [];
 
-    parametros.push(`per_page=4`)
+    parametros.push(`per_page=12`)
     if(page!==0){
       parametros.push(`page=${page}`)
     }
