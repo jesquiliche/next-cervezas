@@ -36,7 +36,7 @@ const CervezaComponent = ({ cerveza }: Props) => {
         <h2 className={`text-center text-sm font-bold p-2`}>
           {cerveza.nombre}
         </h2>
-        <AddCart />
+        <AddCart cerveza={cerveza} />
       </div>
     </>
   );
