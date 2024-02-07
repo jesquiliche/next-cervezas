@@ -1,13 +1,18 @@
 import { CartProduct } from "@/interfaces/interfaces";
 import { create } from "zustand";
 
+import { persist } from "zustand/middleware";
+
+
 interface State {
   cart: CartProduct[];
 
   addCart: (cerveza:CartProduct)=>void;
 }
 
-export const useCartStore = create<State>((set,get) => ({
+export const useCartStore = create<State>()(
+  persist(
+  (set,get) => ({
   
   cart: [],
   
@@ -48,4 +53,10 @@ export const useCartStore = create<State>((set,get) => ({
 
     set({ cart: updatedCartProducts });
   },
-}));
+}),
+{
+  name: "shopping-cart",
+}
+)
+
+);
