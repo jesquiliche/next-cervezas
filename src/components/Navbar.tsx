@@ -159,9 +159,18 @@ const Navbar = async () => {
               <li>
                 <Link
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 "
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 relative"
                 >
-                  <FaShoppingCart size="24px" className="" />
+                  <FaShoppingCart
+                    size="24px"
+                    className="inline-block relative"
+                  />
+                  <span
+                    className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 text-white rounded-full w-4 h-4 flex justify-center items-center text-xs"
+                    style={{ left: "1.2rem" }}
+                  >
+                    5 {/* Número */}
+                  </span>
                 </Link>
               </li>
             </ul>
