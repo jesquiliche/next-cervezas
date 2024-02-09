@@ -23,7 +23,7 @@ export default async function Page({
   const tipo_id = Number(searchParams?.tipo_id || "");
   const color_id = Number(searchParams?.color_id || "");
   const graduacion_id = Number(searchParams?.graduacion_id || "");
-  console.log(searchParams);
+
  
   const construirUrl = () => {
     const parametros = [];

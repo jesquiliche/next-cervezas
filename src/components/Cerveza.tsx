@@ -22,13 +22,16 @@ const CervezaComponent = ({ cerveza }: Props) => {
           </h1>
         </div>
         <Link href={`/Detalle/${cerveza.id}`}>
-          <img src={cerveza.foto} alt={cerveza.nombre} />
+          <img src={cerveza.foto} alt={" " +cerveza.nombre} />
           {cerveza.oferta != 0 && (
-            <img src="/oferta.png" className="absolute top-20 h-12 w-12" />
+            <img src="/oferta.png"
+            alt="Ofertas" 
+            className="absolute top-20 h-12 w-12" />
           )}
           {cerveza.novedad != 0 && (
             <img
               src="/novedad.png"
+              alt="Novedades"
               className="absolute top-20 right-0 h-16 w-16 p-2"
             />
           )}

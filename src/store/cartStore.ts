@@ -38,7 +38,7 @@ export const useCartStore = create<State>()(
     });
 
     set({ cart: updatedCartProducts });
-    console.log(cart)
+  
   },
 
   updateProductQuantity: (cerveza: CartProduct, cantidad: number) => {

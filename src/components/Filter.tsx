@@ -54,7 +54,7 @@ const Filter: React.FC = () => {
     e.preventDefault();
     // Aquí puedes construir el query string con los valores de formData
     const queryString = `tipo_id=${formData.tipo}&pais_id=${formData.pais}&color_id=${formData.color}&graduacion_id=${formData.graduacion}`;
-    console.log(queryString);
+  
     router.push(`${pathname}?${queryString}`);
 //
     
@@ -158,9 +158,9 @@ const Filter: React.FC = () => {
         <div className="w-full p-2">
           <button
             type="submit"
-            className="bg-yellow-400 text-white px-4 py-2 rounded"
+            className="bg-yellow-400 text-dark font-bold px-4 py-2 rounded"
           >
-            Enviar
+            Filtrar
           </button>
         </div>
       </form>

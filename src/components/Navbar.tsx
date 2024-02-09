@@ -167,7 +167,7 @@ const Navbar = async () => {
                   />
                   <span
                     className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 text-white rounded-full w-4 h-4 flex justify-center items-center text-xs"
-                    style={{ left: "1.2rem" }}
+                    style={{ left: "1.4rem" }}
                   >
                     5 {/* Número */}
                   </span>

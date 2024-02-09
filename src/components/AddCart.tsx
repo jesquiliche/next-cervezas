@@ -27,7 +27,7 @@ const AddCart = ({ cerveza }: Props) => {
       <QuantitySelector cantidad={1} onCantidadChanged={setCantidad} />
       <button
         type="button"
-        className="bg-yellow-400 text-white rounded-md p-2 w-full text-center"
+        className="bg-yellow-300 text-dark font-bold rounded-md p-2 w-full text-center"
         onClick={insertarCarrito}
       >
         Añadir a carrito

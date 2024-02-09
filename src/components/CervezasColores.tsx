@@ -25,7 +25,7 @@ const CervezasColores = () => {
           <img
             src="/graduacion.jpg"
             className="w-full h-full rounded-lg"
-            alt="Descripción de la imagen"
+            alt="graduación"
           />
           <h1
             className={`${PacificoFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
@@ -40,7 +40,7 @@ const CervezasColores = () => {
           <img
             src="/cervezas-artesanales.webp"
             className="w-full h-full rounded-lg "
-            alt="Descripción de la imagen"
+            alt="Selección"
           />
           <h1
             className={`${PacificoFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
