@@ -36,6 +36,7 @@ const CervezaComponent = ({ cerveza }: Props) => {
             />
           )}
         </Link>
+        
         <h2 className={`text-center text-sm font-bold p-2`}>
           {cerveza.nombre}
         </h2>
