@@ -2,8 +2,8 @@ import { PacificoFont, titleFont } from "@/config/fonts";
 import { Tipo } from "@/interfaces/interfaces";
 import { fetchPaises, fetchTipos } from "@/services/api";
 import Link from "next/link";
-import { FaShoppingCart } from "react-icons/fa";
 import SearchForm from "./Busqueda";
+import CartLinkComponent from "./CartLinkComponent";
 
 const Navbar = async () => {
   const paisesData = await fetchPaises();
@@ -157,22 +157,8 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 relative"
-                >
-                  <FaShoppingCart
-                    size="24px"
-                    className="inline-block relative"
-                  />
-                  <span
-                    className="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 text-white rounded-full w-4 h-4 flex justify-center items-center text-xs"
-                    style={{ left: "1.4rem" }}
-                  >
-                    5 {/* Número */}
-                  </span>
-                </Link>
-              </li>
+                <CartLinkComponent/>
+                            </li>
             </ul>
           </div>
         </div>
