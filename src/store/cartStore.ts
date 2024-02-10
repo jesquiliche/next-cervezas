@@ -9,6 +9,8 @@ interface State {
 
   addCart: (cerveza:CartProduct)=>void;
   getTotalItems: () => number;
+  updateProductQuantity: (product: CartProduct, quantity: number) => void;
+  removeProduct: (product: CartProduct) => void;
 }
 
 export const useCartStore = create<State>()(
@@ -46,17 +48,28 @@ export const useCartStore = create<State>()(
     const { cart } = get();
 
     const updatedCartProducts = cart.map((item) => {
-      if (item.id === cerveza.id) {
-        return { ...item, cantidad: cantidad };
+      if (item.id == cerveza.id) {
+        return { ...item, cantidad };
       }
       return item;
     });
 
     set({ cart: updatedCartProducts });
   },
+
   getTotalItems: () => {
     const { cart } = get();
     return cart.reduce((total, item) => total + item.cantidad, 0);
+  },
+
+  
+  removeProduct: (product: CartProduct) => {
+    const { cart } = get();
+    const updatedCartProducts = cart.filter(
+      (item) => item.id !== product.id
+    );
+
+    set({ cart: updatedCartProducts });
   },
 
 }),
