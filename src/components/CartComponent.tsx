@@ -2,6 +2,7 @@
 import React from "react";
 import { useCartStore } from "@/store/cartStore";
 import { QuantitySelector } from "./cantidad-selector";
+import Link from "next/link";
 
 const CartComponent: React.FC = () => {
   const articulos = useCartStore((state) => state.cart);
@@ -25,12 +26,14 @@ const CartComponent: React.FC = () => {
             {articulos.map((a, index) => (
               <tr key={index}>
                 <td className="px-4 py-2 text-center">
-                  <img
-                    src={a.foto}
-                    alt={`Artículo ${index + 1}`}
-                    width={150}
-                    height={150}
-                  />
+                  <Link href={`/Detalle/${a.id}`}>
+                    <img
+                      src={a.foto}
+                      alt={`Artículo ${index + 1}`}
+                      width={150}
+                      height={150}
+                    />
+                  </Link>
                   <button
                     onClick={() => removeProduct(a)}
                     className="underline px-4"
@@ -38,7 +41,11 @@ const CartComponent: React.FC = () => {
                     Borrar
                   </button>
                 </td>
-                <td className="px-4 py-2">{a.nombre}</td>
+
+                <td className="px-4 py-2 font-bold underline">
+                  <Link href={`/Detalle/${a.id}`}>{a.nombre}</Link>
+                </td>
+
                 <td className="px-4 py-2">
                   <QuantitySelector
                     cantidad={a.cantidad}
@@ -47,9 +54,9 @@ const CartComponent: React.FC = () => {
                     }
                   />
                 </td>
-                <td className="px-4 py-2">{a.precio}</td>
+                <td className="px-4 py-2">{a.precio} €</td>
                 <td className="px-4 py-2">
-                  {(a.precio * a.cantidad).toFixed(2)}
+                  {(a.precio * a.cantidad).toFixed(2)} €
                 </td>
               </tr>
             ))}
