@@ -4,6 +4,8 @@ import { fetchPaises, fetchTipos } from "@/services/api";
 import Link from "next/link";
 import SearchForm from "./Busqueda";
 import CartLinkComponent from "./CartLinkComponent";
+import ButtonAuth from "./ButtonAuth";
+
 
 const Navbar = async () => {
   const paisesData = await fetchPaises();
@@ -157,8 +159,12 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
+                <ButtonAuth/>
+              </li>
+             
+              <li>
                 <CartLinkComponent/>
-                            </li>
+              </li>
             </ul>
           </div>
         </div>

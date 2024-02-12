@@ -7,6 +7,13 @@ import { persist } from "zustand/middleware";
 interface State {
   cart: CartProduct[];
 
+  getSummaryInformation: () => {
+    subTotal: number;
+    tax: number;
+    total: number;
+    itemsInCart: number;
+  };
+
   addCart: (cerveza:CartProduct)=>void;
   getTotalItems: () => number;
   updateProductQuantity: (product: CartProduct, quantity: number) => void;
@@ -19,6 +26,27 @@ export const useCartStore = create<State>()(
   
   cart: [],
   
+  getSummaryInformation: () => {
+    const { cart } = get();
+
+    const subTotal = cart.reduce(
+      (subTotal, product) => (product.cantidad * product.precio/1.21) + subTotal,
+      0
+    );
+    const tax = subTotal * 0.21;
+    const total = subTotal + tax;
+    const itemsInCart = cart.reduce(
+      (total, item) => total + item.cantidad,
+      0
+    );
+
+    return {
+      subTotal,
+      tax,
+      total,
+      itemsInCart,
+    };
+  },
 
   addCart: (cerveza: CartProduct)=> {
     const { cart } = get();

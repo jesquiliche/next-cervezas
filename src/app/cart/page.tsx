@@ -1,4 +1,5 @@
 import CartComponent from "@/components/CartComponent";
+import { OrderSummary } from "@/components/OrderSummary";
 import { PacificoFont, titleFont } from "@/config/fonts";
 
 export default function CartHome() {
@@ -6,10 +7,10 @@ export default function CartHome() {
     <main>
       <div className=" w-10/12 mx-auto grid grid-cols-1 md:grid-cols-3 py-31">
         <div className="col-span-2">
-          <CartComponent/>
+          <CartComponent />
         </div>
         <div className="col-span-1">
-          Total
+          <OrderSummary />
         </div>
       </div>
     </main>

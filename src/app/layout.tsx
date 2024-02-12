@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Pie from "@/components/Pie";
 import { titleFont } from "@/config/fonts";
+import SessionAuthProvider from "@/context/SessionAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${titleFont.className} text-sm`}>
+      <SessionAuthProvider>
         <Navbar />
         {children}
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" async></script>
         <Pie /> 
+        </SessionAuthProvider>
       </body>
     </html>
   );
