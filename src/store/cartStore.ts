@@ -1,3 +1,4 @@
+'use client'
 import { CartProduct } from "@/interfaces/interfaces";
 import { create } from "zustand";
 
@@ -85,7 +86,7 @@ export const useCartStore = create<State>()(
     set({ cart: updatedCartProducts });
   },
 
-  getTotalItems: () => {
+  getTotalItems:  () => {
     const { cart } = get();
     return cart.reduce((total, item) => total + item.cantidad, 0);
   },

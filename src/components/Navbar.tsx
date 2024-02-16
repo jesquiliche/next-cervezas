@@ -161,11 +161,11 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-              {/*  <ButtonAuth/> */}
+                <ButtonAuth/>
               </li>
              
               <li>
-              {/*  <CartLinkComponent/> */}
+             <CartLinkComponent></CartLinkComponent>
               </li>
             </ul>
           </div>
