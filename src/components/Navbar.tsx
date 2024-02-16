@@ -12,8 +12,10 @@ const Navbar = async () => {
 
   const paises = paisesData?.data;
 
+
   const tiposData = await fetchTipos();
   const tipos = tiposData.data;
+  
 
   return (
     <>
@@ -159,11 +161,11 @@ const Navbar = async () => {
                 </Link>
               </li>
               <li>
-                <ButtonAuth/>
+              {/*  <ButtonAuth/> */}
               </li>
              
               <li>
-                <CartLinkComponent/>
+              {/*  <CartLinkComponent/> */}
               </li>
             </ul>
           </div>
