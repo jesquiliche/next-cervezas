@@ -4,6 +4,13 @@ export interface Provincia{
   nombre:string;
 }
 
+export interface Poblacion{
+  id:number;
+  codigo:string;
+  nombre:string;
+  provincia_cod:string;
+}
+
 
 interface CervezaData {
   nombre: string;

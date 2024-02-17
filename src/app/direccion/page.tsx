@@ -1,4 +1,6 @@
 "use client";
+import { Poblacion, Provincia } from "@/interfaces/interfaces";
+import { getPoblacionesPorProvincia, getProvincias } from "@/services/api";
 /* eslint-disable */
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 
@@ -8,33 +10,36 @@ interface FormData {
   escalera: string;
   piso: string;
   puerta: string;
-  poblacion_id: string;
-  provincia_id: string;
+  poblacion: string;
+  provincia: string;
   user_id: string;
 }
 
 const FormularioDireccion: React.FC = () => {
+  const [provincias, setProvincias] = useState<Provincia[]>([]);
+  const [poblaciones, setPoblaciones] = useState<Poblacion[]>([]);
   const [formData, setFormData] = useState<FormData>({
     calle: "",
     numero: "",
     escalera: "",
     piso: "",
     puerta: "",
-    poblacion_id: "",
-    provincia_id: "",
+    poblacion: "",
+    provincia: "",
     user_id: "",
   });
 
-//  const [provincias, setProvincias] = useState<Provincia[]>([]);
+  //  const [provincias, setProvincias] = useState<Provincia[]>([]);
 
   useEffect(() => {
     const getData = async () => {
-    //  setProvincias(await getProvincias());
+      setProvincias(await getProvincias());
+      // setPoblaciones(await getPoblacionesPorProvincia('08'));
     };
     getData();
   }, []);
 
-  const handleChange = (
+  const handleChange = async (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
@@ -42,6 +47,9 @@ const FormularioDireccion: React.FC = () => {
       ...prevState,
       [name]: value,
     }));
+    if (name == "provincia") {
+      setPoblaciones(await getPoblacionesPorProvincia(value));
+    }
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -125,6 +133,7 @@ const FormularioDireccion: React.FC = () => {
               onChange={handleChange}
               placeholder="Piso"
               className="form-control"
+              required
             />
           </div>
           <div className="mb-4">
@@ -154,15 +163,22 @@ const FormularioDireccion: React.FC = () => {
             <select
               name="provincia"
               id="provincia"
-              value={formData.provincia_id}
+              value={formData.provincia}
               onChange={handleChange}
               className="form-control"
               required
             >
-            {/*  {provincias &&
-                provincias.map((p: Provincia) => {
-                  return <option value={p.codigo}>{p.nombre}</option>;
-                })}*/}
+              {provincias.map((p: Provincia) => {
+                return (
+                  <option
+                    key={p.codigo}
+                    value={p.codigo}
+                    selected={p.codigo === formData.provincia}
+                  >
+                    {p.nombre}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div className="mb-4">
@@ -175,13 +191,16 @@ const FormularioDireccion: React.FC = () => {
             <select
               name="poblacion"
               id="poblacion"
-              value={formData.poblacion_id}
+              value={formData.poblacion}
               onChange={handleChange}
               className="form-control"
               required
             >
               <option value="">Seleccionar Población</option>
-              {/* Opciones de población */}
+              {poblaciones &&
+                poblaciones.map((p: Poblacion) => {
+                  return <option value={p.codigo}>{p.nombre}</option>;
+                })}
             </select>
           </div>
         </div>
