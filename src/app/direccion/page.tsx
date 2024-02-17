@@ -1,10 +1,13 @@
 "use client";
 import { Poblacion, Provincia } from "@/interfaces/interfaces";
 import { getPoblacionesPorProvincia, getProvincias } from "@/services/api";
+import { useAddressStore } from "@/store/address-store";
 /* eslint-disable */
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 
 interface Direccion {
+  nombre: string;
+  apellidos: string;
   calle: string;
   numero: string;
   escalera: string;
@@ -19,25 +22,16 @@ interface Direccion {
 const FormularioDireccion: React.FC = () => {
   const [provincias, setProvincias] = useState<Provincia[]>([]);
   const [poblaciones, setPoblaciones] = useState<Poblacion[]>([]);
-  const [Direccion, setDireccion] = useState<Direccion>({
-    calle: "",
-    numero: "",
-    escalera: "",
-    piso: "",
-    puerta: "",
-    poblacion: "",
-    provincia: "",
-    user_id: "",
-    telefono:"",
-  });
-
-  //  const [provincias, setProvincias] = useState<Provincia[]>([]);
+  const [Direccion, setDireccion] = useState<Direccion>(
+    useAddressStore((state) => state.address)
+  );
+  const setAddres = useAddressStore((state) => state.setAddress);
 
   useEffect(() => {
     const getData = async () => {
       setProvincias(await getProvincias());
-      // setPoblaciones(await getPoblacionesPorProvincia('08'));
     };
+
     getData();
   }, []);
 
@@ -56,8 +50,8 @@ const FormularioDireccion: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aquí puedes manejar la lógica para enviar el formulario
-    console.log(Direccion);
+
+    setAddres(Direccion);
   };
 
   return (
@@ -67,6 +61,44 @@ const FormularioDireccion: React.FC = () => {
       </h1>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-2 gap-4">
+          <div className="mb-4">
+            <label
+              htmlFor="nombre"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Nombre
+            </label>
+            <input
+              type="text"
+              name="nombre"
+              id="nombre"
+              value={Direccion.nombre}
+              onChange={handleChange}
+              placeholder="Nombre"
+              className="form-control"
+              maxLength={150}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="apellidos"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Apellidos
+            </label>
+            <input
+              type="text"
+              name="apellidos"
+              id="qpellidos"
+              value={Direccion.apellidos}
+              onChange={handleChange}
+              placeholder="Apellidos"
+              className="form-control"
+              maxLength={150}
+              required
+            />
+          </div>
           <div className="mb-4">
             <label
               htmlFor="calle"
@@ -226,7 +258,14 @@ const FormularioDireccion: React.FC = () => {
               <option value="">Seleccionar Población</option>
               {poblaciones &&
                 poblaciones.map((p: Poblacion) => {
-                  return <option value={p.codigo}>{p.nombre}</option>;
+                  return (
+                    <option
+                      value={p.codigo}
+                      selected={p.codigo == Direccion.poblacion}
+                    >
+                      {p.nombre}
+                    </option>
+                  );
                 })}
             </select>
           </div>
