@@ -1,3 +1,4 @@
+
 import { Cerveza } from "@/interfaces/interfaces";
 import { fetchCervezasQuery } from "@/services/api";
 import CervezaComponent from "./Cerveza";

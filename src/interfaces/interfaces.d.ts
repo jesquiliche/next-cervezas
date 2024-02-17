@@ -1,3 +1,10 @@
+export interface Provincia{
+  id:number;
+  codigo:string;
+  nombre:string;
+}
+
+
 interface CervezaData {
   nombre: string;
   descripcion: string;

@@ -1,6 +1,7 @@
 import CartComponent from "@/components/CartComponent";
 import { OrderSummary } from "@/components/OrderSummary";
 import { PacificoFont, titleFont } from "@/config/fonts";
+import Link from "next/link";
 
 export default function CartHome() {
   return (

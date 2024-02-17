@@ -8,6 +8,7 @@ import {
   CervezaData,
   PaisesData,
   TiposData,
+  Provincia,
 } from "@/interfaces/interfaces";
 
 export async function fetchCervezas() {
@@ -264,6 +265,27 @@ export async function fetchPaises(): Promise<PaisesData> {
   }
 }
 
+export async function getProvincias(): Promise<Provincia[]> {
+  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+
+  try {
+    const response = await fetch(`${apiUrl}provincias`);
+    console.log(`${apiUrl}paises`);
+
+    if (!response.ok){
+      console.log(response.status,response.statusText) 
+      //throw new Error("No se pudieron obtener los datos de la API");
+    }
+
+    const data = await response.json();
+    return data;
+    // Aquí puedes trabajar con los datos obtenidos de la API
+  } catch (error) {
+    console.error("Error al obtener datos:", error);
+    // Manejar el error aquí según sea necesario
+    throw error; // Lanzar el error nuevamente para que el llamador lo maneje
+  }
+}
 
 export async function fetchColores(): Promise<Color[] | any> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";

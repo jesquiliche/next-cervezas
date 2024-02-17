@@ -17,7 +17,7 @@ export default  function  ButtonAuth() {
             {callbackUrl:"/"})}
           className="px-4"
         >
-          <span className="form-control">Log out - {session.user?.name}</span>
+          <span className="">Log out - {session.user?.name}</span>
         </button>
       </>
     );

@@ -1,5 +1,6 @@
 'use client'
 import { useCartStore } from "@/store/cartStore";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -55,7 +56,14 @@ export const OrderSummary = () => {
           <span className="mt-5">Total:</span>
           <span className="mt-5 text-right ml-2">{formattedTotal} €</span>
         </div>
+        <div>
+        <Link href="/direccion" className="btn-primary">
+          Siguiente
+        </Link>
+        </div>
       </div>
+      
+        
     </div>
   );
 };
