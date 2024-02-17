@@ -4,7 +4,7 @@ import { getPoblacionesPorProvincia, getProvincias } from "@/services/api";
 /* eslint-disable */
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 
-interface FormData {
+interface Direccion {
   calle: string;
   numero: string;
   escalera: string;
@@ -13,12 +13,13 @@ interface FormData {
   poblacion: string;
   provincia: string;
   user_id: string;
+  telefono: string;
 }
 
 const FormularioDireccion: React.FC = () => {
   const [provincias, setProvincias] = useState<Provincia[]>([]);
   const [poblaciones, setPoblaciones] = useState<Poblacion[]>([]);
-  const [formData, setFormData] = useState<FormData>({
+  const [Direccion, setDireccion] = useState<Direccion>({
     calle: "",
     numero: "",
     escalera: "",
@@ -27,6 +28,7 @@ const FormularioDireccion: React.FC = () => {
     poblacion: "",
     provincia: "",
     user_id: "",
+    telefono:"",
   });
 
   //  const [provincias, setProvincias] = useState<Provincia[]>([]);
@@ -43,7 +45,7 @@ const FormularioDireccion: React.FC = () => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
+    setDireccion((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -55,11 +57,11 @@ const FormularioDireccion: React.FC = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Aquí puedes manejar la lógica para enviar el formulario
-    console.log(formData);
+    console.log(Direccion);
   };
 
   return (
-    <div className="w-6/12 mx-auto px-4 py-32 bg-white">
+    <div className="w-1/2 mx-auto px-4 py-32 bg-white">
       <h1 className="text-2xl font-semibold mb-6 text-center">
         Dirección de entrega
       </h1>
@@ -76,10 +78,11 @@ const FormularioDireccion: React.FC = () => {
               type="text"
               name="calle"
               id="calle"
-              value={formData.calle}
+              value={Direccion.calle}
               onChange={handleChange}
               placeholder="Calle"
               className="form-control"
+              maxLength={150}
               required
             />
           </div>
@@ -94,10 +97,11 @@ const FormularioDireccion: React.FC = () => {
               type="text"
               name="numero"
               id="numero"
-              value={formData.numero}
+              value={Direccion.numero}
               onChange={handleChange}
               placeholder="Número"
               className="form-control"
+              maxLength={5}
               required
             />
           </div>
@@ -112,10 +116,11 @@ const FormularioDireccion: React.FC = () => {
               type="text"
               name="escalera"
               id="escalera"
-              value={formData.escalera}
+              value={Direccion.escalera}
               onChange={handleChange}
               placeholder="Escalera"
               className="form-control"
+              maxLength={5}
             />
           </div>
           <div className="mb-4">
@@ -129,10 +134,11 @@ const FormularioDireccion: React.FC = () => {
               type="text"
               name="piso"
               id="piso"
-              value={formData.piso}
+              value={Direccion.piso}
               onChange={handleChange}
               placeholder="Piso"
               className="form-control"
+              maxLength={20}
               required
             />
           </div>
@@ -147,15 +153,35 @@ const FormularioDireccion: React.FC = () => {
               type="text"
               name="puerta"
               id="puerta"
-              value={formData.puerta}
+              value={Direccion.puerta}
               onChange={handleChange}
               placeholder="Puerta"
+              maxLength={5}
               className="form-control"
             />
           </div>
           <div className="mb-4">
             <label
-              htmlFor="provincia_id"
+              htmlFor="puerta"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
+              Teléfono
+            </label>
+            <input
+              type="text"
+              name="telefono"
+              id="telefono"
+              value={Direccion.telefono}
+              onChange={handleChange}
+              placeholder="Teléfono"
+              className="form-control"
+              maxLength={15}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="provincia"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
               Provincia
@@ -163,7 +189,7 @@ const FormularioDireccion: React.FC = () => {
             <select
               name="provincia"
               id="provincia"
-              value={formData.provincia}
+              value={Direccion.provincia}
               onChange={handleChange}
               className="form-control"
               required
@@ -174,7 +200,7 @@ const FormularioDireccion: React.FC = () => {
                   <option
                     key={p.codigo}
                     value={p.codigo}
-                    selected={p.codigo === formData.provincia}
+                    selected={p.codigo === Direccion.provincia}
                   >
                     {p.nombre}
                   </option>
@@ -184,7 +210,7 @@ const FormularioDireccion: React.FC = () => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="poblacion_id"
+              htmlFor="poblacion"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
               Población (primero seleccionar Provincia)
@@ -192,7 +218,7 @@ const FormularioDireccion: React.FC = () => {
             <select
               name="poblacion"
               id="poblacion"
-              value={formData.poblacion}
+              value={Direccion.poblacion}
               onChange={handleChange}
               className="form-control"
               required
@@ -205,9 +231,9 @@ const FormularioDireccion: React.FC = () => {
             </select>
           </div>
         </div>
-        <div className="text-center mt-6">
+        <div className="text-center mt-6 w-2/6 mx-auto">
           <button type="submit" className="btn-primary text-md">
-            Enviar
+            Guardar
           </button>
         </div>
       </form>

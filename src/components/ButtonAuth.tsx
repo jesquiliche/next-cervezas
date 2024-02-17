@@ -7,6 +7,7 @@ export default  function  ButtonAuth() {
   if (status === "loading") {
     return <p>Loading...</p>;
   }
+  console.log(session);
 
   if (session) {
     return (
