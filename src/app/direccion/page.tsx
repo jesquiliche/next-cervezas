@@ -168,6 +168,7 @@ const FormularioDireccion: React.FC = () => {
               className="form-control"
               required
             >
+              <option value="">Seleccionar Provincia</option>
               {provincias.map((p: Provincia) => {
                 return (
                   <option
@@ -186,7 +187,7 @@ const FormularioDireccion: React.FC = () => {
               htmlFor="poblacion_id"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Población
+              Población (primero seleccionar Provincia)
             </label>
             <select
               name="poblacion"
