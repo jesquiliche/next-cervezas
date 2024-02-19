@@ -47,6 +47,7 @@ export interface Cerveza {
   graduacion: string;
   tipo: string;
   pais: string;
+  stock:number;
 }
 
 export interface CartProduct {

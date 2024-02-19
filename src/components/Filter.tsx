@@ -75,7 +75,7 @@ const Filter: React.FC = () => {
             name="tipo"
             id="tipo"
             onChange={handleOnChange}
-            className="w-full p-2 border rounded bg-gray-100"
+            className="form-control"
           >
             <option key="0" value="0">
               
@@ -97,7 +97,7 @@ const Filter: React.FC = () => {
             name="pais"
             id="pais"
             onChange={handleOnChange}
-            className="w-full p-2 border bg-gray-100 rounded"
+            className="form-control"
           >
               <option key="0" value="0">
               
@@ -119,7 +119,7 @@ const Filter: React.FC = () => {
             name="color"
             id="color"
             onChange={handleOnChange}
-            className="w-full p-2 border bg-gray-100 rounded"
+            className="form-control"
           >
               <option key="0" value="0">
               
@@ -141,7 +141,7 @@ const Filter: React.FC = () => {
             name="graduacion"
             id="graduacion"
             onChange={handleOnChange}
-            className="w-full p-2 border rounded bg-gray-100"
+            className="form-control"
           >
               <option key="0" value="0">
               
@@ -158,7 +158,7 @@ const Filter: React.FC = () => {
         <div className="w-full p-2">
           <button
             type="submit"
-            className="bg-yellow-400 text-dark font-bold px-4 py-2 rounded"
+            className="btn-primary"
           >
             Filtrar
           </button>

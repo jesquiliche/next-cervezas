@@ -1,5 +1,6 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { FaUser } from "react-icons/fa";
 
 export default  function  ButtonAuth() {
   const { data: session, status } = useSession();

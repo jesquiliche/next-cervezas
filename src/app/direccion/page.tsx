@@ -59,12 +59,12 @@ const FormularioDireccion: React.FC = () => {
   };
 
   return (
-    <div className="w-10/12 mx-auto px-4 py-32 bg-white">
+    <div className="w-11/12 mx-auto px-4 py-32 bg-white">
       <h1 className="text-2xl font-semibold mb-6 text-center">
         Dirección de entrega
       </h1>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <div className="mb-4">
             <label
               htmlFor="nombre"
@@ -244,7 +244,7 @@ const FormularioDireccion: React.FC = () => {
               })}
             </select>
           </div>
-          <div className="mb-4 col-span-2">
+          <div className="mb-4">
             <label
               htmlFor="poblacion"
               className="block text-gray-700 text-sm font-bold mb-2"

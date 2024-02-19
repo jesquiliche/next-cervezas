@@ -23,7 +23,7 @@ const SearchForm: React.FC = () => {
         value={searchQuery}
         onChange={handleChange}
         placeholder="Buscar..."
-        className="w-full  border rounded-full border-gray-900 focus:border-gray-900 hover:border-gray-900 "
+        className="form-control"
       />
       <button type="submit" className="m-2 ">
         <svg
