@@ -1,8 +1,10 @@
 "use client";
+import { useSession } from "next-auth/react";
 import { Poblacion, Provincia } from "@/interfaces/interfaces";
 import { getPoblacionesPorProvincia, getProvincias } from "@/services/api";
 import { useAddressStore } from "@/store/address-store";
 /* eslint-disable */
+import {useRouter} from "next/navigation";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 
 interface Direccion {
@@ -15,7 +17,7 @@ interface Direccion {
   puerta: string;
   poblacion: string;
   provincia: string;
-  user_id: string;
+  user_id: number;
   telefono: string;
 }
 
@@ -26,6 +28,13 @@ const FormularioDireccion: React.FC = () => {
     useAddressStore((state) => state.address)
   );
   const setAddres = useAddressStore((state) => state.setAddress);
+  const router=useRouter();
+  const { data: session, status } = useSession();
+
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
 
   useEffect(() => {
 
@@ -46,6 +55,7 @@ const FormularioDireccion: React.FC = () => {
     setDireccion((prevState) => ({
       ...prevState,
       [name]: value,
+      user_id:session?.user.id ?? 0
     }));
     if (name == "provincia") {
       setPoblaciones(await getPoblacionesPorProvincia(value));
@@ -56,6 +66,7 @@ const FormularioDireccion: React.FC = () => {
     e.preventDefault();
 
     setAddres(Direccion);
+    router.push('/checkout');
   };
 
   return (
@@ -276,7 +287,7 @@ const FormularioDireccion: React.FC = () => {
         </div>
         <div className="text-center mt-6 w-2/6 mx-auto">
           <button type="submit" className="btn-primary text-md">
-            Guardar
+            Siguiente
           </button>
         </div>
       </form>

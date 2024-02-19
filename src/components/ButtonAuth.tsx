@@ -1,8 +1,7 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { FaUser } from "react-icons/fa";
 
-export default  function  ButtonAuth() {
+export default function ButtonAuth() {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
@@ -13,11 +12,9 @@ export default  function  ButtonAuth() {
   if (session) {
     return (
       <>
-        
         <button
-          onClick={async () => await signOut(
-            {callbackUrl:"/"})}
-          className="px-4"
+          onClick={async () => await signOut({ callbackUrl: "/" })}
+          className="px-1"
         >
           <span className="">Log out - {session.user?.name}</span>
         </button>
@@ -26,11 +23,7 @@ export default  function  ButtonAuth() {
   }
   return (
     <>
-    
-      <button
-        onClick={() => signIn()}
-        className="px-4"
-      >
+      <button onClick={() => signIn()} className="px-4">
         Log in
       </button>
     </>

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useCartStore } from "@/store/cartStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -16,15 +16,6 @@ export const OrderSummary = () => {
     setLoaded(true);
   }, []);
 
-  /*useEffect(() => {
-
-    if ( itemsInCart === 0 && loaded === true )   {
-      router.replace('/empty')
-    }
-
-
-  },[ ]) */
-
   if (!loaded) return <p>Loading...</p>;
 
   // Convertir subTotal, tax y total a dos decimales
@@ -33,37 +24,30 @@ export const OrderSummary = () => {
   const formattedTotal = total.toFixed(2);
 
   return (
-    <div className="py-32">
-      <h1 className="text-xl font-bold text-center">
-        Total
-      </h1>
+    <div className="">
+      <h1 className="text-xl font-bold text-center">Total</h1>
       <div className="w-10/12 p-4 border-2 rounded-lg shadow-lg mx-auto">
-        <div className="text-right text-xl">
-          <span>No. Productos</span>
-          <span className="ml-2">
+        <div className="grid grid-cols-2">
+          <div className="font-bold">No. Productos</div>
+          <div className="ml-2">
             {itemsInCart === 1 ? "1 artículo" : `${itemsInCart} artículos`}
-          </span>
-        </div>
-        <div className="text-right text-xl">
-          <span>Subtotal</span>
-          <span className="text-right text-xl ml-2">{formattedSubTotal} €</span>
-        </div>
-        <div className="text-right text-xl">
-          <span>IVA (21%)</span>
-          <span className="text-right ml-2 text-xl">{formattedTax} €</span>
-        </div>
-        <div className="text-right text-2xl font-bold">
-          <span className="mt-5">Total:</span>
-          <span className="mt-5 text-right ml-2">{formattedTotal} €</span>
+          </div>
+
+          <div className="font-bold">Subtotal</div>
+          <div>{formattedSubTotal} €</div>
+
+          <div className="font-bold">IVA (21%)</div>
+          <div>{formattedTax} €</div>
+          <div className="font-bold">Total:</div>
+          <div>{formattedTotal} €</div>
         </div>
         <div>
         <Link href="/direccion" className="btn-primary">
           Siguiente
         </Link>
-        </div>
+      </div>
       </div>
       
-        
     </div>
   );
 };

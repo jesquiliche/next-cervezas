@@ -13,7 +13,7 @@ interface State {
     puerta: string;
     poblacion: string;
     provincia: string;
-    user_id: string;
+    user_id: number;
     telefono: string;
   };
 
@@ -34,7 +34,7 @@ export const useAddressStore = create<State>()(
         puerta: "",
         poblacion: "",
         provincia: "",
-        user_id: "",
+        user_id: 0,
         telefono: ""
       },
 

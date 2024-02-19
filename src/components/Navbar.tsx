@@ -29,7 +29,9 @@ const Navbar = async () => {
               El rincón de la cerveza
             </span>
           </Link>
+          <div>
           <SearchForm />
+          </div>
           <button
             data-collapse-toggle="navbar-dropdown"
             type="button"
@@ -63,7 +65,7 @@ const Navbar = async () => {
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownNavbar"
-                  className="flex items-center justify-between w-full py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto"
+                  className="flex items-center justify-between w-full py-2 pl-2 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto"
                 >
                   Pais{" "}
                   <svg
@@ -109,7 +111,7 @@ const Navbar = async () => {
                 <button
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownTipos"
-                  className="flex items-center justify-between w-full py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto  "
+                  className="flex items-center justify-between w-full py-2 pl-2 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto  "
                 >
                   Estilo{" "}
                   <svg
@@ -155,7 +157,7 @@ const Navbar = async () => {
               <li>
                 <Link
                   href="#"
-                  className="block py-2 pl-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 "
+                  className="block py-2 pl-2 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 "
                 >
                   Contacto
                 </Link>
