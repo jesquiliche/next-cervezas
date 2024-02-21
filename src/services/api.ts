@@ -191,6 +191,40 @@ export async function fetchCervezasById(id: string): Promise<Cerveza> {
   // Aquí puedes trabajar con los datos obtenidos de la API
 }
 
+export async function getProvinciaByCodigo(codigo: string):Promise<Provincia>{
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
+
+  const response = await fetch(`${apiUrl}provincias/${codigo}`);
+
+  if (!response.ok) {
+    throw new Error("No se pudieron obtener los datos de la API");
+  }
+
+  const data = await response.json();
+  
+
+  return data;
+  // Aquí puedes trabajar con los datos obtenidos de la API
+}
+
+
+export async function getPoblacionByCodigo(codigo: string):Promise<Poblacion>{
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/";
+
+  console.log(`${apiUrl}poblaciones/${codigo}`);
+  const response = await fetch(`${apiUrl}poblaciones/${codigo}`,{cache: "no-store"});
+
+  if (!response.ok) {
+    throw new Error("No se pudieron obtener los datos de la API");
+  }
+
+  const data = await response.json();
+  
+
+  return data;
+  // Aquí puedes trabajar con los datos obtenidos de la API
+}
+
 export async function fetchCervezasQuery(query: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
   try {
@@ -271,7 +305,7 @@ export async function getProvincias(): Promise<Provincia[]> {
 
   try {
     const response = await fetch(`${apiUrl}provincias`);
-    console.log(`${apiUrl}paises`);
+    console.log(`${apiUrl}provincias`);
 
     if (!response.ok){
       console.log(response.status,response.statusText) 

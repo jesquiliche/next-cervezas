@@ -3,7 +3,6 @@ import { useCartStore } from "@/store/cartStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
 export const OrderSummary = () => {
   const router = useRouter();
 
@@ -30,7 +29,7 @@ export const OrderSummary = () => {
         <div className="grid grid-cols-2">
           <div className="font-bold">No. Productos</div>
           <div className="ml-2">
-            {itemsInCart === 1 ? "1 artículo" : `${itemsInCart} artículos`}
+            {itemsInCart}
           </div>
 
           <div className="font-bold">Subtotal</div>
@@ -38,11 +37,11 @@ export const OrderSummary = () => {
 
           <div className="font-bold">IVA (21%)</div>
           <div>{formattedTax} €</div>
-          <div className="font-bold">Total:</div>
-          <div>{formattedTotal} €</div>
+          <div className="font-bold text-xl">Total:</div>
+          <div className="text-xl">{formattedTotal} €</div>
         </div>
         <div>
-        <Link href="/direccion" className="btn-primary">
+        <Link href="/direccion" className="btn-primary mt-5">
           Siguiente
         </Link>
       </div>

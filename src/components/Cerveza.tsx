@@ -11,7 +11,7 @@ const CervezaComponent = ({ cerveza }: Props) => {
     <>
       <div
         key={cerveza.id}
-        className="relative flex flex-col justify-between rounded-lg border-2 shadow-lg p-2 h-full"
+        className="relative flex flex-col justify-between rounded-lg border-2 shadow-lg p-3 h-full"
       >
         <div className="flex justify-between  items-center">
           <h1 className="text-2xl italic font-bold text-red-600">

@@ -125,3 +125,20 @@ export interface PaisesData {
   to: number;
   total: number;
 }
+
+export interface Provincia {
+  id: number;
+  codigo: string;
+  nombre: string;
+  created_at: string | null;
+  updated_at: string | null;
+}
+
+export interface Poblacion {
+  id: number;
+  codigo: string;
+  nombre: string;
+  provincia_cod: string;
+  created_at: string | null;
+  updated_at: string | null;
+}
