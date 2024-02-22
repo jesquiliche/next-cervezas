@@ -1,25 +1,12 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { Poblacion, Provincia } from "@/interfaces/interfaces";
-import { getPoblacionesPorProvincia, getProvincias } from "@/services/api";
+import { Poblacion, Provincia,Direccion } from "@/interfaces/interfaces";
+import { getPoblacionesPorProvincia, getProvincias, postDireccion } from "@/services/api";
 import { useAddressStore } from "@/store/address-store";
 /* eslint-disable */
 import {useRouter} from "next/navigation";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 
-interface Direccion {
-  nombre: string;
-  apellidos: string;
-  calle: string;
-  numero: string;
-  escalera: string;
-  piso: string;
-  puerta: string;
-  poblacion: string;
-  provincia: string;
-  user_id: number;
-  telefono: string;
-}
 
 const FormularioDireccion: React.FC = () => {
   const [provincias, setProvincias] = useState<Provincia[]>([]);
@@ -62,10 +49,11 @@ const FormularioDireccion: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setAddres(Direccion);
+    await postDireccion(Direccion)
     router.push('/checkout');
   };
 

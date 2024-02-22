@@ -26,18 +26,13 @@ export const AddressSummary = () => {
     useAddressStore((state) => state.address)
   );
 
-  console.log(address);
   useEffect(() => {
     const getData = async () => {
       setPoblacion(await getPoblacionByCodigo(address.poblacion));
       setProvincia(await getProvinciaByCodigo(address.provincia));
     };
     getData();
-    console.log("Entro")
   }, []);
-
-  console.log(poblacion);
-  console.log(provincia);
 
   return (
     <div className="mt-32">

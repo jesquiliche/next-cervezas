@@ -10,6 +10,7 @@ import {
   TiposData,
   Provincia,
   Poblacion,
+  Direccion,
 } from "@/interfaces/interfaces";
 
 export async function fetchCervezas() {
@@ -514,6 +515,31 @@ export async function postRegister(
   }
 }
 
+export async function postDireccion(datos: Direccion) {
+  console.log("Entro");
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
+    console.log(apiUrl)
+    const response = await fetch(`${apiUrl}direcciones`, { // Corrección aquí
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(datos),
+    });
+
+    if (response.ok) {
+      console.log("Datos enviados correctamente.");
+      // Aquí puedes realizar acciones adicionales después de enviar los datos
+    } else {
+      console.log("Error al enviar la dirección")
+    }
+    return "ok";
+  } catch (error: any) {
+    return error.message;
+  }
+}
+
 export async function fetchDeleteCervezasById(id: string, token: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
@@ -539,6 +565,8 @@ export async function fetchDeleteCervezasById(id: string, token: string) {
     console.error(error);
   }
 }
+
+
 
 export async function fetchDeleteTiposById(id: string, token: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";

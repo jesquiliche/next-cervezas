@@ -11,6 +11,20 @@ export interface Poblacion{
   provincia_cod:string;
 }
 
+export interface Direccion {
+  nombre: string;
+  apellidos: string;
+  calle: string;
+  numero: string;
+  escalera: string;
+  piso: string;
+  puerta: string ;
+  poblacion: string;
+  provincia: string;
+  user_id: number;
+  telefono: string;
+}
+
 
 interface CervezaData {
   nombre: string;
