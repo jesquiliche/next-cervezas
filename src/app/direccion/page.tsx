@@ -1,12 +1,17 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { Poblacion, Provincia,Direccion } from "@/interfaces/interfaces";
-import { getPoblacionesPorProvincia, getProvincias, postDireccion } from "@/services/api";
+import { Poblacion, Provincia, Direccion } from "@/interfaces/interfaces";
+import {
+  fetchDeleteDireccion,
+  getDireccionByUserId,
+  getPoblacionesPorProvincia,
+  getProvincias,
+  postDireccion,
+} from "@/services/api";
 import { useAddressStore } from "@/store/address-store";
 /* eslint-disable */
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-
 
 const FormularioDireccion: React.FC = () => {
   const [provincias, setProvincias] = useState<Provincia[]>([]);
@@ -15,20 +20,23 @@ const FormularioDireccion: React.FC = () => {
     useAddressStore((state) => state.address)
   );
   const setAddres = useAddressStore((state) => state.setAddress);
-  const router=useRouter();
+  const router = useRouter();
   const { data: session, status } = useSession();
-
 
   if (status === "loading") {
     return <p>Loading...</p>;
   }
 
   useEffect(() => {
-
     const getData = async () => {
       setProvincias(await getProvincias());
-      if (Direccion.poblacion!=""){
-        setPoblaciones(await getPoblacionesPorProvincia(Direccion.provincia))
+      if (Direccion.poblacion != "") {
+        setPoblaciones(await getPoblacionesPorProvincia(Direccion.provincia));
+      }
+
+      const direccion = await getDireccionByUserId(String(session?.user.id));
+      if (direccion) {
+        setDireccion(direccion);
       }
     };
 
@@ -42,19 +50,24 @@ const FormularioDireccion: React.FC = () => {
     setDireccion((prevState) => ({
       ...prevState,
       [name]: value,
-      user_id:session?.user.id ?? 0
+      user_id: session?.user.id ?? 0,
     }));
     if (name == "provincia") {
       setPoblaciones(await getPoblacionesPorProvincia(value));
     }
   };
 
-  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const checkboxMarcado = (e.target as HTMLFormElement).miCheckbox.checked;
     setAddres(Direccion);
-    await postDireccion(Direccion)
-    router.push('/checkout');
+    if (checkboxMarcado) {
+      await postDireccion(Direccion);
+    } else {
+      await fetchDeleteDireccion(String(session?.user.id));
+    }
+    router.push("/checkout");
   };
 
   return (
@@ -271,6 +284,18 @@ const FormularioDireccion: React.FC = () => {
                   );
                 })}
             </select>
+          </div>
+          <div className="mb-4">
+            <input
+              type="checkbox"
+              id="miCheckbox"
+              name="miCheckbox"
+              value="valor1"
+              onChange={handleChange}
+            />
+            <label htmlFor="miCheckbox" className="ml-2">
+              ¿Recordar Dirección?
+            </label>
           </div>
         </div>
         <div className="text-center mt-6 w-2/6 mx-auto">

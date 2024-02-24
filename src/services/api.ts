@@ -1,4 +1,3 @@
-
 import {
   Cerveza,
   Color,
@@ -37,7 +36,7 @@ export async function fetchCervezasPorPaises() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
-    const response = await fetch(`${apiUrl}consultaCervezasPorPais` );
+    const response = await fetch(`${apiUrl}consultaCervezasPorPais`);
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -104,7 +103,7 @@ export async function fetchCervezasPorGraduaciones() {
     }
 
     const data = await response.json();
-    
+
     return data;
     // Aquí puedes trabajar con los datos obtenidos de la API
   } catch (error) {
@@ -126,7 +125,7 @@ export async function fetchStockPorPais() {
     }
 
     const data = await response.json();
-  
+
     return data;
     // Aquí puedes trabajar con los datos obtenidos de la API
   } catch (error) {
@@ -135,12 +134,13 @@ export async function fetchStockPorPais() {
   }
 }
 
-
 export async function fetchConsultaTablas2() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
-    const response = await fetch(`${apiUrl}consultaTablas2`,{ cache: "no-store" });
+    const response = await fetch(`${apiUrl}consultaTablas2`, {
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       throw new Error(`${apiUrl}consultaTablas`);
@@ -179,21 +179,23 @@ export async function fetchConsultaBD() {
 export async function fetchCervezasById(id: string): Promise<Cerveza> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
-  const response = await fetch(`${apiUrl}cervezas/${id}`, { next: { revalidate: 0 } });
+  const response = await fetch(`${apiUrl}cervezas/${id}`, {
+    next: { revalidate: 0 },
+  });
 
   if (!response.ok) {
     throw new Error("No se pudieron obtener los datos de la API");
   }
 
   const data = await response.json();
-  
 
   return data;
   // Aquí puedes trabajar con los datos obtenidos de la API
 }
 
-export async function getProvinciaByCodigo(codigo: string):Promise<Provincia>{
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
+export async function getProvinciaByCodigo(codigo: string): Promise<Provincia> {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
 
   const response = await fetch(`${apiUrl}provincias/${codigo}`);
 
@@ -202,34 +204,53 @@ export async function getProvinciaByCodigo(codigo: string):Promise<Provincia>{
   }
 
   const data = await response.json();
-  
 
   return data;
   // Aquí puedes trabajar con los datos obtenidos de la API
 }
 
-
-export async function getPoblacionByCodigo(codigo: string):Promise<Poblacion>{
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/";
+export async function getPoblacionByCodigo(codigo: string): Promise<Poblacion> {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/";
 
   console.log(`${apiUrl}poblaciones/${codigo}`);
-  const response = await fetch(`${apiUrl}poblaciones/${codigo}`,{cache: "no-store"});
+  const response = await fetch(`${apiUrl}poblaciones/${codigo}`, {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     throw new Error("No se pudieron obtener los datos de la API");
   }
 
   const data = await response.json();
-  
 
   return data;
   // Aquí puedes trabajar con los datos obtenidos de la API
 }
 
+export async function getDireccionByUserId(user_id: string): Promise<Direccion | null> {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
+
+  const response = await fetch(`${apiUrl}direcciones/${user_id}`,
+  {cache: "no-store"});
+
+  if (!response.ok) {
+    //throw new Error("No se pudieron obtener los datos de la API");
+    return null;
+  }
+
+  const data = await response.json();
+
+  return data;
+  // Aquí puedes trabajar con los datos obtenidos de la API
+}
 export async function fetchCervezasQuery(query: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
   try {
-    const response = await fetch(`${apiUrl}cervezas?${query}`,{cache:"no-cache"});
+    const response = await fetch(`${apiUrl}cervezas?${query}`, {
+      cache: "no-cache",
+    });
 
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
@@ -248,7 +269,7 @@ export async function fetchCervezasQuery2(query: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
   try {
     const response = await fetch(`${apiUrl}cervezas?${query}`);
-   
+
     if (!response.ok) {
       throw new Error("No se pudieron obtener los datos de la API");
     }
@@ -267,7 +288,7 @@ export async function fetchTiposQuery(query: string) {
     const response = await fetch(`${apiUrl}tipos?${query}`);
 
     if (!response.ok) {
-      return false
+      return false;
       throw new Error("No se pudieron obtener los datos de la API");
     }
 
@@ -284,10 +305,9 @@ export async function fetchPaises(): Promise<PaisesData> {
 
   try {
     const response = await fetch(`${apiUrl}paises`);
-    console.log(`${apiUrl}paises`);
 
-    if (!response.ok){
-      console.log(response.status,response.statusText) 
+    if (!response.ok) {
+      console.log(response.status, response.statusText);
       //throw new Error("No se pudieron obtener los datos de la API");
     }
 
@@ -302,14 +322,14 @@ export async function fetchPaises(): Promise<PaisesData> {
 }
 
 export async function getProvincias(): Promise<Provincia[]> {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:6000/api/v1/";
 
   try {
     const response = await fetch(`${apiUrl}provincias`);
-    console.log(`${apiUrl}provincias`);
 
-    if (!response.ok){
-      console.log(response.status,response.statusText) 
+    if (!response.ok) {
+      console.log(response.status, response.statusText);
       //throw new Error("No se pudieron obtener los datos de la API");
     }
 
@@ -324,14 +344,15 @@ export async function getProvincias(): Promise<Provincia[]> {
 }
 
 export async function getPoblaciones(): Promise<Poblacion[]> {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:6000/api/v1/";
 
   try {
     const response = await fetch(`${apiUrl}poblaciones`);
     console.log(`${apiUrl}poblaciones`);
 
-    if (!response.ok){
-      console.log(response.status,response.statusText) 
+    if (!response.ok) {
+      console.log(response.status, response.statusText);
       //throw new Error("No se pudieron obtener los datos de la API");
     }
 
@@ -345,16 +366,21 @@ export async function getPoblaciones(): Promise<Poblacion[]> {
   }
 }
 
-export async function getPoblacionesPorProvincia(provincia:string): Promise<Poblacion[]> {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+export async function getPoblacionesPorProvincia(
+  provincia: string
+): Promise<Poblacion[]> {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
 
   try {
-    const response = await fetch(`${apiUrl}poblaciones?provincia=${provincia}`,
-    {cache: "no-store"});
+    const response = await fetch(
+      `${apiUrl}poblaciones?provincia=${provincia}`,
+      { cache: "no-store" }
+    );
     console.log(`${apiUrl}poblaciones?provincia=${provincia}`);
 
-    if (!response.ok){
-      console.log(response.status,response.statusText) 
+    if (!response.ok) {
+      console.log(response.status, response.statusText);
       //throw new Error("No se pudieron obtener los datos de la API");
     }
 
@@ -394,7 +420,7 @@ export async function fetchTipos(): Promise<TiposData> {
     const response = await fetch(`${apiUrl}tipos`);
 
     if (!response.ok) {
-      console.log(await response.json)
+      console.log(await response.json);
       //throw new Error("No se pudieron obtener los datos de la API");
     }
 
@@ -408,16 +434,14 @@ export async function fetchTipos(): Promise<TiposData> {
   }
 }
 
-export async function fetchTiposById(id:string): Promise<Tipo | undefined> {
+export async function fetchTiposById(id: string): Promise<Tipo | undefined> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
-
 
   try {
     const response = await fetch(`${apiUrl}tipos/${id}`);
-    console.log(`${apiUrl}tipos/${id}`)
+    console.log(`${apiUrl}tipos/${id}`);
     if (!response.ok) {
-     
-      console.log(await response.status)
+      console.log(await response.status);
       //throw new Error("No se pudieron obtener los datos de la API");
     }
 
@@ -427,13 +451,12 @@ export async function fetchTiposById(id:string): Promise<Tipo | undefined> {
     // Aquí puedes trabajar con los datos obtenidos de la API
   } catch (error) {
     console.log(error);
-    return ; // Debes devolver un valor adecuado en caso de error
+    return; // Debes devolver un valor adecuado en caso de error
   }
 }
 
-export async function fetchPaisesById(id:string): Promise<Pais | undefined> {
+export async function fetchPaisesById(id: string): Promise<Pais | undefined> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
-
 
   try {
     const response = await fetch(`${apiUrl}paises/${id}`);
@@ -449,10 +472,9 @@ export async function fetchPaisesById(id:string): Promise<Pais | undefined> {
     // Aquí puedes trabajar con los datos obtenidos de la API
   } catch (error) {
     console.log(error);
-    return ; // Debes devolver un valor adecuado en caso de error
+    return; // Debes devolver un valor adecuado en caso de error
   }
 }
-
 
 export async function fetchGraduaciones(): Promise<Graduacion[]> {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
@@ -516,11 +538,12 @@ export async function postRegister(
 }
 
 export async function postDireccion(datos: Direccion) {
-  console.log("Entro");
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
-    console.log(apiUrl)
-    const response = await fetch(`${apiUrl}direcciones`, { // Corrección aquí
+    const apiUrl =
+      process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
+
+    const response = await fetch(`${apiUrl}direcciones`, {
+      // Corrección aquí
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -532,13 +555,15 @@ export async function postDireccion(datos: Direccion) {
       console.log("Datos enviados correctamente.");
       // Aquí puedes realizar acciones adicionales después de enviar los datos
     } else {
-      console.log("Error al enviar la dirección")
+      console.log("Error al enviar la dirección");
     }
     return "ok";
   } catch (error: any) {
     return error.message;
   }
 }
+
+
 
 export async function fetchDeleteCervezasById(id: string, token: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
@@ -557,7 +582,7 @@ export async function fetchDeleteCervezasById(id: string, token: string) {
       return true;
       throw new Error(`Error al eliminar la cerveza con ID ${id}`);
     }
-    return true
+    return true;
     /*const data = await response.json();
 
     return data.data;*/
@@ -566,50 +591,65 @@ export async function fetchDeleteCervezasById(id: string, token: string) {
   }
 }
 
-
-
 export async function fetchDeleteTiposById(id: string, token: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
-    try {
+  try {
     const response = await fetch(`${apiUrl}tipos/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    
 
-    if (!response.ok) {     ;
-      return false
+    if (!response.ok) {
+      return false;
       throw new Error(`Error al eliminar el tipo con ID ${id}`);
     }
 
-    return true
+    return true;
     // Lógica adicional después de una eliminación exitosa, si es necesario
   } catch (error) {
     console.error(error);
   }
 }
 
-  export async function fetchDeletePaisesById(id: string, token: string) {
-    const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
-      try {
-      const response = await fetch(`${apiUrl}paises/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      
-  
-      if (!response.ok) {     ;
-        return false
-        throw new Error(`Error al eliminar el tipo con ID ${id}`);
-      }
-  
-      return true
-      // Lógica adicional después de una eliminación exitosa, si es necesario
-    } catch (error) {
-      console.error(error);
+export async function fetchDeletePaisesById(id: string, token: string) {
+  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  try {
+    const response = await fetch(`${apiUrl}paises/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      return false;
+      throw new Error(`Error al eliminar el tipo con ID ${id}`);
     }
+
+    return true;
+    // Lógica adicional después de una eliminación exitosa, si es necesario
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchDeleteDireccion(id: string) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  try {
+    const response = await fetch(`${apiUrl}direcciones/${id}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      return false;
+      throw new Error(`Error al eliminar el tipo con ID ${id}`);
+    }
+
+    return true;
+    // Lógica adicional después de una eliminación exitosa, si es necesario
+  } catch (error) {
+    console.error(error);
+  }
 }
