@@ -1,11 +1,9 @@
 "use client";
 import { useCartStore } from "@/store/cartStore";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-export const OrderSummary = () => {
-  const router = useRouter();
 
+export const OrderSummary = () => {
   const [loaded, setLoaded] = useState(false);
   const { itemsInCart, subTotal, tax, total } = useCartStore((state) =>
     state.getSummaryInformation()
@@ -28,9 +26,7 @@ export const OrderSummary = () => {
       <div className="w-10/12 p-4 border-2 rounded-lg shadow-lg mx-auto">
         <div className="grid grid-cols-2">
           <div className="font-bold">No. Productos</div>
-          <div className="ml-2">
-            {itemsInCart}
-          </div>
+          <div className="ml-2">{itemsInCart}</div>
 
           <div className="font-bold">Subtotal</div>
           <div>{formattedSubTotal} €</div>
@@ -41,12 +37,11 @@ export const OrderSummary = () => {
           <div className="text-xl">{formattedTotal} €</div>
         </div>
         <div>
-        <Link href="/direccion" className="btn-primary mt-5">
-          Siguiente
-        </Link>
+          <Link href="/direccion" className="btn-primary mt-5">
+            Siguiente
+          </Link>
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 };

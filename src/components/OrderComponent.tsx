@@ -4,8 +4,6 @@ import { useCartStore } from "@/store/cartStore";
 
 const OrderComponent: React.FC = () => {
   const articulos = useCartStore((state) => state.cart);
-  const updateCantidad = useCartStore((state) => state.updateProductQuantity);
-  const removeProduct = useCartStore((state) => state.removeProduct);
 
   return (
     <div className="py-32">
@@ -32,14 +30,9 @@ const OrderComponent: React.FC = () => {
                   />
                 </td>
 
-                <td className="px-4 py-2 font-bold">
-                  {a.nombre}
-                </td>
+                <td className="px-4 py-2 font-bold">{a.nombre}</td>
 
-                <td className="px-4 py-2">
-                {a.cantidad}
-                
-                </td>
+                <td className="px-4 py-2">{a.cantidad}</td>
                 <td className="px-4 py-2">{a.precio} €</td>
                 <td className="px-4 py-2">
                   {(a.precio * a.cantidad).toFixed(2)} €

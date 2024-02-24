@@ -12,6 +12,10 @@ import {
   Direccion,
 } from "@/interfaces/interfaces";
 
+/**
+ * Obtiene la lista de cervezas desde la API.
+ * @returns {Promise<CervezaData[]>} La lista de cervezas obtenida desde la API.
+ */
 export async function fetchCervezas() {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
 
@@ -228,12 +232,15 @@ export async function getPoblacionByCodigo(codigo: string): Promise<Poblacion> {
   // Aquí puedes trabajar con los datos obtenidos de la API
 }
 
-export async function getDireccionByUserId(user_id: string): Promise<Direccion | null> {
+export async function getDireccionByUserId(
+  user_id: string
+): Promise<Direccion | null> {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
 
-  const response = await fetch(`${apiUrl}direcciones/${user_id}`,
-  {cache: "no-store"});
+  const response = await fetch(`${apiUrl}direcciones/${user_id}`, {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     //throw new Error("No se pudieron obtener los datos de la API");
@@ -537,16 +544,16 @@ export async function postRegister(
   }
 }
 
-export async function postDireccion(datos: Direccion) {
+export async function postDireccion(datos: Direccion, token: string) {
   try {
     const apiUrl =
       process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
 
     const response = await fetch(`${apiUrl}direcciones`, {
-      // Corrección aquí
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(datos),
     });
@@ -562,8 +569,6 @@ export async function postDireccion(datos: Direccion) {
     return error.message;
   }
 }
-
-
 
 export async function fetchDeleteCervezasById(id: string, token: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
@@ -635,11 +640,16 @@ export async function fetchDeletePaisesById(id: string, token: string) {
   }
 }
 
-export async function fetchDeleteDireccion(id: string) {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
+export async function fetchDeleteDireccion(id: string, token: string) {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
   try {
     const response = await fetch(`${apiUrl}direcciones/${id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (!response.ok) {

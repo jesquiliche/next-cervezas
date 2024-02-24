@@ -30,6 +30,7 @@ const FormularioDireccion: React.FC = () => {
   useEffect(() => {
     const getData = async () => {
       setProvincias(await getProvincias());
+      
       if (Direccion.poblacion != "") {
         setPoblaciones(await getPoblacionesPorProvincia(Direccion.provincia));
       }
@@ -62,10 +63,12 @@ const FormularioDireccion: React.FC = () => {
 
     const checkboxMarcado = (e.target as HTMLFormElement).miCheckbox.checked;
     setAddres(Direccion);
+    const token=session?.authorization.token ?? "";
     if (checkboxMarcado) {
-      await postDireccion(Direccion);
+      
+      await postDireccion(Direccion,token);
     } else {
-      await fetchDeleteDireccion(String(session?.user.id));
+      await fetchDeleteDireccion(String(session?.user.id),token);
     }
     router.push("/checkout");
   };
