@@ -2,6 +2,7 @@
 import { useCartStore } from "@/store/cartStore";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import GuardarOrden from "@/lib/GuardarOrden";
 
 export const OrderSummary = () => {
   const [loaded, setLoaded] = useState(false);

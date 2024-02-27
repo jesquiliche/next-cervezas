@@ -1,4 +1,3 @@
-'use client'
 import { CartProduct } from "@/interfaces/interfaces";
 import { create } from "zustand";
 
