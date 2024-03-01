@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { useAddressStore } from "@/store/address-store";
 import { useSession } from "next-auth/react";
@@ -8,12 +8,16 @@ const ColocarOrden: React.FC = () => {
   const { data: session, status } = useSession();
   const articulos = useCartStore((state) => state.cart);
   const address = useAddressStore((state) => state.address);
+  
+  const [ordenEnProceso, setOrdenEnProceso] = useState(false); // Estado para controlar si la orden está en proceso o no
 
   if (status === "loading") {
     return <p>Loading...</p>;
   }
 
   const GuardarOrden = async () => {
+    setOrdenEnProceso(true); // Habilitar estado de orden en proceso
+
     const articulosSimplificados = articulos.map((articulo) => ({
       id: articulo.id,
       cantidad: articulo.cantidad,
@@ -26,7 +30,7 @@ const ColocarOrden: React.FC = () => {
 
     const token: string = session?.authorization.token ?? "";
     const resp: string = await crearOrden(orden, token);
-    alert(resp);
+    setOrdenEnProceso(false); // Deshabilitar estado de orden en proceso
   };
 
   async function crearOrden(orden: any, token: string): Promise<string> {
@@ -56,8 +60,14 @@ const ColocarOrden: React.FC = () => {
 
   return (
     <div>
-      <button type="button" className="btn-primary" onClick={GuardarOrden}>
-        Colocar orden
+      <button 
+        type="button" 
+        className={`btn-primary mt-5 ${ordenEnProceso ? 'disabled' : ''}`} // Agregar clase 'disabled' si la orden está en proceso
+        onClick={GuardarOrden}
+        disabled={ordenEnProceso} // Deshabilitar el botón si la orden está en proceso
+        style={{ backgroundColor: ordenEnProceso ? 'gray' : '' }} // Cambiar color del botón si la orden está en proceso
+      >
+        {ordenEnProceso ? 'Guardando Orden...' : 'Colocar orden'}
       </button>
     </div>
   );

@@ -24,7 +24,7 @@ export const OrderSummary = () => {
   return (
     <div className="">
       <h1 className="text-xl font-bold text-center">Total</h1>
-      <div className="w-10/12 p-4 border-2 rounded-lg shadow-lg mx-auto">
+      <div className="p-4 border-2 rounded-lg shadow-lg mx-auto">
         <div className="grid grid-cols-2">
           <div className="font-bold">No. Productos</div>
           <div className="ml-2">{itemsInCart}</div>
@@ -38,9 +38,7 @@ export const OrderSummary = () => {
           <div className="text-xl">{formattedTotal} €</div>
         </div>
         <div>
-          <Link href="/direccion" className="btn-primary mt-5">
-            Siguiente
-          </Link>
+          
         </div>
       </div>
     </div>

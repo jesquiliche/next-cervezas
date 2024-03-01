@@ -14,6 +14,9 @@ export default function CartHome() {
         <div className="col-span-1 py-32">
           
           <OrderSummary />
+          <Link href="/direccion" className="btn-primary mt-5">
+            Siguiente
+          </Link>
           
         </div>
       </div>

@@ -37,7 +37,7 @@ export const AddressSummary = () => {
   return (
     <div className="mt-32">
       <h1 className="text-xl font-bold text-center">Dirección</h1>
-      <div className="w-10/12 p-4 border-2 rounded-lg shadow-lg mx-auto">
+      <div className="p-4 border-2 rounded-lg shadow-lg mx-auto">
         <div className="grid grid-cols-2">
           <div className="text-md font-bold">Nombre :</div>
           <div>{address.nombre}</div>

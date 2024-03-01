@@ -15,7 +15,7 @@ export default function CartHome() {
         <div className="col-span-1">
           <AddressSummary />
           <OrderSummary />
-          <ColocarOrden />
+          <ColocarOrden/>
         </div>
       </div>
     </main>
