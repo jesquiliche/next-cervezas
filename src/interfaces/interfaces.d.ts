@@ -156,3 +156,43 @@ export interface Poblacion {
   created_at: string | null;
   updated_at: string | null;
 }
+
+interface Orden {
+  id: number;
+  user_id: number;
+  subtotal: number;
+  total: number;
+  iva: number;
+  pagado: string;
+  entregado: string;
+  created_at: string;
+  updated_at: string;
+}
+
+interface Detalle {
+  id: number;
+  orden_id: number;
+  cerveza_id: number;
+  precio: number;
+  cantidad: number;
+  nombre: string;
+  descripcion: string;
+  color_id: number;
+  graduacion_id: number;
+  tipo_id: number;
+  pais_id: number;
+  formato: string;
+  unidades: number;
+  stock: number;
+  novedad: number;
+  oferta: number;
+  foto: string;
+  marca: string;
+}
+
+
+interface Pedido {
+  orden: Orden;
+  detalle: Detalle[];
+  direccion: Direccion;
+}

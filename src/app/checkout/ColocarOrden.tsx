@@ -8,6 +8,7 @@ const ColocarOrden: React.FC = () => {
   const { data: session, status } = useSession();
   const articulos = useCartStore((state) => state.cart);
   const address = useAddressStore((state) => state.address);
+  const [error,setError]=useState('');
   
   const [ordenEnProceso, setOrdenEnProceso] = useState(false); // Estado para controlar si la orden está en proceso o no
 
@@ -46,13 +47,15 @@ const ColocarOrden: React.FC = () => {
         },
         body: JSON.stringify(orden),
       });
-
+      
+      setError('');
       if (response.ok) {
         console.log("Datos enviados correctamente.");
       } else {
-        console.log("Error al enviar la dirección");
+        const data=await response.json();
+        setError(data.error);
       }
-      return "ok";
+      return 'ok'
     } catch (error: any) {
       return error.message;
     }
@@ -60,6 +63,7 @@ const ColocarOrden: React.FC = () => {
 
   return (
     <div>
+      
       <button 
         type="button" 
         className={`btn-primary mt-5 ${ordenEnProceso ? 'disabled' : ''}`} // Agregar clase 'disabled' si la orden está en proceso
@@ -69,6 +73,9 @@ const ColocarOrden: React.FC = () => {
       >
         {ordenEnProceso ? 'Guardando Orden...' : 'Colocar orden'}
       </button>
+      <p className="text-md text-red-600 mt-2 font-semibold">
+        {error}
+      </p>
     </div>
   );
 };

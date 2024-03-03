@@ -10,6 +10,7 @@ import {
   Provincia,
   Poblacion,
   Direccion,
+  Pedido,
 } from "@/interfaces/interfaces";
 
 /**
@@ -662,4 +663,22 @@ export async function fetchDeleteDireccion(id: string, token: string) {
   } catch (error) {
     console.error(error);
   }
+}
+
+export async function getPedido(id: string): Promise<Pedido> {
+  const apiUrl =
+    process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
+
+  const response = await fetch(`${apiUrl}ordenes/${id}`,{
+    cache: "no-store"
+  });
+
+  if (!response.ok) {
+    throw new Error("No se pudieron obtener los datos de la API");
+  }
+
+  const data = await response.json();
+
+  return data;
+  // Aquí puedes trabajar con los datos obtenidos de la API
 }
