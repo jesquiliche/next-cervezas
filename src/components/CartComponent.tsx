@@ -10,7 +10,7 @@ const CartComponent: React.FC = () => {
   const removeProduct = useCartStore((state) => state.removeProduct);
 
   return (
-    <div className="py-32">
+    <div className="py-2">
       {articulos.length > 0 && (
         <table className="table-auto">
           <thead>

@@ -35,7 +35,7 @@ export const AddressSummary = () => {
   }, []);
 
   return (
-    <div className="mt-32">
+    <div className="mt-3">
       <h1 className="text-xl font-bold text-center">Dirección</h1>
       <div className="p-4 border-2 rounded-lg shadow-lg mx-auto">
         <div className="grid grid-cols-2">

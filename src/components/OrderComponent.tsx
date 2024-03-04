@@ -6,7 +6,7 @@ const OrderComponent: React.FC = () => {
   const articulos = useCartStore((state) => state.cart);
 
   return (
-    <div className="py-32">
+    <div className="py-3">
       {articulos.length > 0 && (
         <table className="table-auto">
           <thead>

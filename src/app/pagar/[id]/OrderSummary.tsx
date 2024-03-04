@@ -1,25 +1,19 @@
 "use client";
-import { useCartStore } from "@/store/cartStore";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import GuardarOrden from "@/lib/GuardarOrden";
 
-export const OrderSummary = () => {
-  const [loaded, setLoaded] = useState(false);
-  const { itemsInCart, subTotal, tax, total } = useCartStore((state) =>
-    state.getSummaryInformation()
-  );
+import { Orden } from "@/interfaces/interfaces";
 
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
-
-  if (!loaded) return <p>Loading...</p>;
+interface Props {
+  orden: Orden ;
+}
+export const OrderSummary = ({orden}:Props) => {
+  
+  
 
   // Convertir subTotal, tax y total a dos decimales
-  const formattedSubTotal = subTotal.toFixed(2);
-  const formattedTax = tax.toFixed(2);
-  const formattedTotal = total.toFixed(2);
+  const formattedSubTotal = orden.subtotal.toFixed(2);
+  const formattedTax = orden.iva.toFixed(2);
+  const formattedTotal = orden.total.toFixed(2);
+  const cantidad=orden.articulos;
 
   return (
     <div className="">
@@ -27,7 +21,7 @@ export const OrderSummary = () => {
       <div className="p-4 border-2 rounded-lg shadow-lg mx-auto">
         <div className="grid grid-cols-2">
           <div className="font-bold">No. Productos</div>
-          <div className="ml-2">{itemsInCart}</div>
+          <div className="ml-2">{cantidad}</div>
 
           <div className="font-bold">Subtotal</div>
           <div>{formattedSubTotal} €</div>

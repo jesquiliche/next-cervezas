@@ -165,6 +165,7 @@ interface Orden {
   iva: number;
   pagado: string;
   entregado: string;
+  articulos:number;
   created_at: string;
   updated_at: string;
 }

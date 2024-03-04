@@ -8,7 +8,7 @@ const CartComponent: React.FC<Props> = ({ detalle }: Props) => {
   
 
   return (
-    <div className="py-32">
+    <div className="mt-3">
       {detalle && detalle.length > 0 && (
         <table className="table-auto">
           <thead>
