@@ -18,6 +18,7 @@ interface State {
   getTotalItems: () => number;
   updateProductQuantity: (product: CartProduct, quantity: number) => void;
   removeProduct: (product: CartProduct) => void;
+  removeCart: ()=>void;
 }
 
 export const useCartStore = create<State>()(
@@ -50,7 +51,7 @@ export const useCartStore = create<State>()(
 
   addCart: (cerveza: CartProduct)=> {
     const { cart } = get();
-    console.log(cart)
+    
     // 1. Revisar si el producto existe en el carrito con la talla seleccionada
     const productInCart = cart.some((item) => item.id === cerveza.id     );
 
@@ -99,6 +100,9 @@ export const useCartStore = create<State>()(
 
     set({ cart: updatedCartProducts });
   },
+ removeCart() {
+   set({cart:[]})
+ }, 
 
 }),
 {

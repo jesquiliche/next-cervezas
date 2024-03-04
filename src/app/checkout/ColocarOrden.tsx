@@ -9,6 +9,7 @@ const ColocarOrden: React.FC = () => {
   const { data: session, status } = useSession();
   const articulos = useCartStore((state) => state.cart);
   const address = useAddressStore((state) => state.address);
+  const removeCart=useCartStore((state)=>state.removeCart);
   const { itemsInCart } = useCartStore((state) =>
     state.getSummaryInformation()
   );
@@ -37,7 +38,9 @@ const ColocarOrden: React.FC = () => {
 
     const token: string = session?.authorization.token ?? "";
     const resp: string = await crearOrden(orden, token);
+    removeCart();
     setOrdenEnProceso(false); // Deshabilitar estado de orden en proceso
+    
   };
 
   async function crearOrden(orden: any, token: string): Promise<string> {
