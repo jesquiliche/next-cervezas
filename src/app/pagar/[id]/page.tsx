@@ -1,4 +1,5 @@
 
+import { PayPalButton } from "@/components/PayPalButton";
 import { AddressSummary } from "./AddresSummary";
 import CartComponent from "./CartComponent";
 import { OrderSummary } from "./OrderSummary";
@@ -32,7 +33,7 @@ export default async function PagarHome({params}:Props) {
         <div className="col-span-1">
           <AddressSummary address={pedido?.direccion} />
           <OrderSummary orden={pedido.orden} />
-          
+          <PayPalButton/>
         </div>
       </div>
     </main>
