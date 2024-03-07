@@ -4,6 +4,7 @@ import { AddressSummary } from "./AddresSummary";
 import CartComponent from "./CartComponent";
 import { OrderSummary } from "./OrderSummary";
 import { getPedido } from "@/services/api";
+import { Pedido } from "@/interfaces/interfaces";
 
 
 interface Props {
@@ -28,12 +29,12 @@ export default async function PagarHome({params}:Props) {
           </h1>
         </div>
         <div className="col-span-2">
-          <CartComponent detalle={pedido?.detalle}/>
+          <CartComponent detalle={pedido.detalle}/>
         </div>
         <div className="col-span-1">
-          <AddressSummary address={pedido?.direccion} />
+          <AddressSummary address={pedido.direccion} />
           <OrderSummary orden={pedido.orden} />
-          <PayPalButton/>
+          <PayPalButton pedido={pedido}/>
         </div>
       </div>
     </main>
