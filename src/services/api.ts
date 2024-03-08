@@ -669,8 +669,8 @@ export async function getPedido(id: string): Promise<Pedido> {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
 
-  const response = await fetch(`${apiUrl}ordenes/${id}`,{
-    cache: "no-store"
+  const response = await fetch(`${apiUrl}ordenes/${id}`, {
+    cache: "no-store",
   });
 
   if (!response.ok) {
@@ -681,4 +681,33 @@ export async function getPedido(id: string): Promise<Pedido> {
 
   return data;
   // Aquí puedes trabajar con los datos obtenidos de la API
+}
+
+export async function pagarOrden(id: string, transactionId: string): Promise<string> {
+  try {
+    const apiUrl: string = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
+    console.log(`${apiUrl}pagarorden/${id}`);
+    
+    const response = await fetch(`${apiUrl}pagarorden/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ transactionId }),
+    });
+
+    if (response.ok) {
+      console.log("Datos enviados correctamente.");
+      const orden = await response.json();
+      // Realizar acciones adicionales si es necesario con la respuesta exitosa
+    } else {
+      const error = await response.json();
+      console.error("Error al enviar los datos:", error);
+      throw new Error("Error al enviar los datos"); // Lanzar un error para ser capturado en el bloque catch
+    }
+    return "ok";
+  } catch (error: any) {
+    console.error("Error en la función pagarOrden:", error.message);
+    return error.message;
+  }
 }

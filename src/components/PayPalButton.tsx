@@ -1,13 +1,17 @@
-'use client'
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CreateOrderActions } from "@paypal/paypal-js";
+import { pagarOrden } from "@/services/api";
 
 interface Props {
   pedido: any; // Interfaz de propiedades que espera recibir este componente
 }
 
 export const PayPalButton: React.FC<Props> = ({ pedido }) => {
+  // Estado para almacenar el transactionId
+  const [transactionId, setTransactionId] = useState<string | null>(null);
+
   // Función para crear la orden de PayPal
   const createOrder = (data: CreateOrderActions) => {
     // Mapea los artículos del pedido para construir la lista de artículos de PayPal
@@ -16,7 +20,6 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
       unit_amount: { value: item.precio.toFixed(2), currency_code: "EUR" },
       quantity: item.cantidad.toString(),
       description: item.nombre,
-      image_url: item.foto, // Agregar la URL de la imagen del artículo
     }));
 
     // Crea la orden de PayPal con la información proporcionada
@@ -42,20 +45,23 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
   };
 
   // Función para manejar el evento onApprove
-const onApprove = (data: any, actions: any) => {
-  // Capturar el evento de aprobación y realizar acciones adicionales (por ejemplo, confirmar el pago)
-  return actions.order.capture().then(function(details: any) {
-    // Obtener el transactionId de los detalles de la transacción
-    const transactionId = details.id;
-    
-    // Realizar acciones adicionales con el transactionId, como guardarlo en el estado del componente o enviarlo al servidor
-    console.log("Transaction ID:", transactionId);
-    
-    // Mostrar un mensaje de éxito o realizar cualquier acción adicional necesaria
-    alert("Pago completado correctamente. ID de transacción: " + transactionId);
-  });
-};
+  const onApprove = (data: any, actions: any) => {
+    // Capturar el evento de aprobación y realizar acciones adicionales (por ejemplo, confirmar el pago)
+    return actions.order.capture().then(function (details: any) {
+      // Obtener el transactionId de los detalles de la transacción
+      const transactionId = details.id;
+      console.log(transactionId);
+      // Guardar el transactionId en el estado del componente
+      setTransactionId(transactionId);
+      const resp = pagarOrden(pedido.orden.id.toString(), transactionId);
+      alert(resp);
+      // Mostrar un mensaje de éxito
+      alert("Pago completado correctamente");
 
+      // Retornar el transactionId para cualquier uso adicional
+      return transactionId;
+    });
+  };
 
   // Renderiza los botones de PayPal y maneja la creación de la orden
   return (
@@ -66,6 +72,8 @@ const onApprove = (data: any, actions: any) => {
         }
         onApprove={onApprove}
       />
+      {transactionId && <p>Transaction ID: {transactionId}</p>}{" "}
+      {/* Mostrar el transactionId si está disponible */}
     </div>
   );
 };
