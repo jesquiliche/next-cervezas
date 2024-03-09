@@ -11,6 +11,7 @@ import {
   Poblacion,
   Direccion,
   Pedido,
+  Orden,
 } from "@/interfaces/interfaces";
 
 /**
@@ -711,3 +712,26 @@ export async function pagarOrden(id: string, transactionId: string): Promise<str
     return error.message;
   }
 }
+
+export async function getPedidosPorUsuario(userId: string): Promise<Orden[]> {
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
+
+    const response = await fetch(`${apiUrl}ordenes?user_id=${userId}`, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("No se pudieron obtener los datos de la API");
+    }
+
+    const data = await response.json();
+
+    // Aquí puedes trabajar con los datos obtenidos de la API
+    return data;
+  } catch (error: any) {
+    console.error("Error al obtener los pedidos del usuario:", error.message);
+    throw new Error("Error al obtener los pedidos del usuario");
+  }
+}
+
