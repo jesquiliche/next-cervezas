@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React from "react";
 import { useCartStore } from "@/store/cartStore";
 import { QuantitySelector } from "./cantidad-selector";
@@ -12,56 +12,47 @@ const CartComponent: React.FC = () => {
   return (
     <div className="py-2">
       {articulos.length > 0 && (
-        <table className="table-auto">
-          <thead>
-            <tr>
-              <th className="px-4 py-2">Foto</th>
-              <th className="px-4 py-2">Nombre</th>
-              <th className="px-4 py-2">Cantidad</th>
-              <th className="px-4 py-2">Precio</th>
-              <th className="px-4 py-2">Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            {articulos.map((a, index) => (
-              <tr key={index}>
-                <td className="px-4 py-2 text-center">
-                  <Link href={`/Detalle/${a.id}`}>
-                    <img
-                      src={a.foto}
-                      alt={`Artículo ${index + 1}`}
-                      width={150}
-                      height={150}
-                    />
-                  </Link>
-                  <button
-                    onClick={() => removeProduct(a)}
-                    className="underline px-4"
-                  >
-                    Borrar
-                  </button>
-                </td>
-
-                <td className="px-4 py-2 font-bold underline">
-                  <Link href={`/Detalle/${a.id}`}>{a.nombre}</Link>
-                </td>
-
-                <td className="px-4 py-2">
-                  <QuantitySelector
-                    cantidad={a.cantidad}
-                    onCantidadChanged={(cantidad) =>
-                      updateCantidad(a, cantidad)
-                    }
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+       
+          {articulos.map((a, index) => (
+            <div key={index} className="border p-2 rounded">
+              <div className="text-center">
+                <Link href={`/Detalle/${a.id}`}>
+                  <img
+                    src={a.foto}
+                    alt={`Artículo ${index + 1}`}
+                    width={200}
+                    height={200}
+                    className="cursor-pointer mx-auto"
                   />
-                </td>
-                <td className="px-4 py-2">{a.precio} €</td>
-                <td className="px-4 py-2">
-                  {(a.precio * a.cantidad).toFixed(2)} €
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </Link>
+                <button
+                  onClick={() => removeProduct(a)}
+                  className="underline px-4 mt-2 block w-full"
+                >
+                  Borrar
+                </button>
+              </div>
+
+              <div className="font-bold underline text-center">
+                <Link href={`/Detalle/${a.id}`}>{a.nombre}</Link>
+              </div>
+
+              <div className="text-center">
+                <QuantitySelector
+                  cantidad={a.cantidad}
+                  onCantidadChanged={(cantidad) =>
+                    updateCantidad(a, cantidad)
+                  }
+                />
+              </div>
+              <div className="text-center">Precio {a.precio} €</div>
+              <div className="text-center">
+                Subtotal {(a.precio * a.cantidad).toFixed(2)} €
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

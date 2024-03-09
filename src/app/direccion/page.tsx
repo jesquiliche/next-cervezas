@@ -79,7 +79,7 @@ const FormularioDireccion: React.FC = () => {
         Dirección de entrega
       </h1>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div className="mb-4">
             <label
               htmlFor="nombre"
@@ -230,7 +230,7 @@ const FormularioDireccion: React.FC = () => {
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 col-span-2 md:col-span-1">
             <label
               htmlFor="provincia"
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -242,7 +242,7 @@ const FormularioDireccion: React.FC = () => {
               id="provincia"
               value={Direccion.provincia}
               onChange={handleChange}
-              className="form-control"
+              className="form-control text-xs md:text-sm "
               required
             >
               <option value="">Seleccionar Provincia</option>
@@ -252,6 +252,7 @@ const FormularioDireccion: React.FC = () => {
                     key={p.codigo}
                     value={p.codigo}
                     selected={p.codigo === Direccion.provincia}
+                    
                   >
                     {p.nombre}
                   </option>
@@ -259,7 +260,7 @@ const FormularioDireccion: React.FC = () => {
               })}
             </select>
           </div>
-          <div className="mb-4">
+          <div className="mb- col-span-2 md:col-span-1">
             <label
               htmlFor="poblacion"
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -271,7 +272,7 @@ const FormularioDireccion: React.FC = () => {
               id="poblacion"
               value={Direccion.poblacion}
               onChange={handleChange}
-              className="form-control"
+              className="form-control text-xs md:text-sm"
               required
             >
               <option value="">Seleccionar Población</option>

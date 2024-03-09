@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React from "react";
 import { useCartStore } from "@/store/cartStore";
 
@@ -8,39 +8,31 @@ const OrderComponent: React.FC = () => {
   return (
     <div className="py-3">
       {articulos.length > 0 && (
-        <table className="table-auto">
-          <thead>
-            <tr>
-              <th className="px-4 py-2">Foto</th>
-              <th className="px-4 py-2">Nombre</th>
-              <th className="px-4 py-2">Cantidad</th>
-              <th className="px-4 py-2">Precio</th>
-              <th className="px-4 py-2">Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            {articulos.map((a, index) => (
-              <tr key={index}>
-                <td className="px-4 py-2 text-center">
-                  <img
-                    src={a.foto}
-                    alt={`Artículo ${index + 1}`}
-                    width={150}
-                    height={150}
-                  />
-                </td>
+        <div className="grid grid-cols-3 gap-2">
+          {articulos.map((a, index) => (
+            <div key={index} className="border p-2">
+              <div className="text-center">
+                <img
+                  src={a.foto}
+                  alt={`Artículo ${index + 1}`}
+                  width={150}
+                  height={150}
+                  className="mx-auto"
+                />
+              </div>
 
-                <td className="px-4 py-2 font-bold">{a.nombre}</td>
+              <div className="font-bold text-center">
+                {a.nombre}
+              </div>
 
-                <td className="px-4 py-2">{a.cantidad}</td>
-                <td className="px-4 py-2">{a.precio} €</td>
-                <td className="px-4 py-2">
-                  {(a.precio * a.cantidad).toFixed(2)} €
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+              <div className="text-center">Cantidad {a.cantidad}</div>
+              <div className="text-center">Precio {a.precio} €</div>
+              <div className="text-center">
+                Subtotal {(a.precio * a.cantidad).toFixed(2)} €
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
