@@ -5,6 +5,7 @@ import SearchForm from "./Busqueda";
 import CartLinkComponent from "./CartLinkComponent";
 import ButtonAuth from "./ButtonAuth";
 
+
 const Navbar = async () => {
   const paisesData = await fetchPaises();
   const paises = paisesData?.data;
@@ -205,7 +206,7 @@ const Navbar = async () => {
                         href="/configuracion"
                         className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
                       >
-                        Configuración
+                        Configuración 
                       </Link>
                     </li>
                     <li>

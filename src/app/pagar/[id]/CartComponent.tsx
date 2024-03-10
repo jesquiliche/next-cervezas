@@ -15,8 +15,8 @@ const CartComponent: React.FC<Props> = ({ detalle }: Props) => {
                 <img
                   src={a.foto}
                   alt={`Artículo ${index + 1}`}
-                  width={150}
-                  height={150}
+                  width="100%"
+                  height="100%"
                   className="mx-auto"
                 />
               </div>

@@ -4,17 +4,20 @@ import { getPedidosPorUsuario } from "@/services/api"; // Importa la función qu
 import { Orden } from "@/interfaces/interfaces"; // Importa las interfaces
 import Link from "next/link";
 
-interface Props {
-  userId: number;
-}
+import { getSession } from "next-auth/react";
 
-const ListaPedidosUsuario: React.FC<Props> = ({ userId }) => {
+const ListaPedidosUsuario: React.FC = async () => {
   const [pedidos, setPedidos] = useState<Orden[]>([]);
+  console.log("Entro");
 
+  const sesion = await getSession();
+  console.log("Entro");
+  console.log(sesion);
+  const id = sesion?.user.id;
   useEffect(() => {
     const fetchPedidos = async () => {
       try {
-        const pedidos = await getPedidosPorUsuario(userId.toString());
+        const pedidos = await getPedidosPorUsuario(id?.toString() || "");
         setPedidos(pedidos);
         console.log(pedidos);
       } catch (error) {

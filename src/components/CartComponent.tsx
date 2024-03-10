@@ -21,8 +21,8 @@ const CartComponent: React.FC = () => {
                   <img
                     src={a.foto}
                     alt={`Artículo ${index + 1}`}
-                    width={200}
-                    height={200}
+                    width="100%"
+                    height="100%"
                     className="cursor-pointer mx-auto"
                   />
                 </Link>

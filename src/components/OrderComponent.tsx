@@ -8,15 +8,15 @@ const OrderComponent: React.FC = () => {
   return (
     <div className="py-3">
       {articulos.length > 0 && (
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cola-1 md:grid-cols-3 gap-2">
           {articulos.map((a, index) => (
             <div key={index} className="border p-2">
               <div className="text-center">
                 <img
                   src={a.foto}
                   alt={`Artículo ${index + 1}`}
-                  width={150}
-                  height={150}
+                  width="100%"
+                  height="100%"
                   className="mx-auto"
                 />
               </div>

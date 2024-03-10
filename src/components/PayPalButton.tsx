@@ -53,11 +53,8 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
       console.log(transactionId);
       // Guardar el transactionId en el estado del componente
       setTransactionId(transactionId);
-      const resp = pagarOrden(pedido.orden.id.toString(), transactionId);
-      alert(resp);
-      // Mostrar un mensaje de éxito
-      alert("Pago completado correctamente");
-
+      const resp =  pagarOrden(pedido.orden.id.toString(), transactionId);
+       
       // Retornar el transactionId para cualquier uso adicional
       return transactionId;
     });
