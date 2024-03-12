@@ -310,7 +310,7 @@ export async function fetchTiposQuery(query: string) {
   }
 }
 export async function fetchPaises(): Promise<PaisesData> {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
 
   try {
     const response = await fetch(`${apiUrl}paises`);
@@ -404,7 +404,7 @@ export async function getPoblacionesPorProvincia(
 }
 
 export async function fetchColores(): Promise<Color[] | any> {
-  const apiUrl = process.env.NEX_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
   try {
     const response = await fetch(`${apiUrl}colores`, {
       method: "GET",
@@ -423,7 +423,7 @@ export async function fetchColores(): Promise<Color[] | any> {
 }
 
 export async function fetchTipos(): Promise<TiposData> {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
 
   try {
     const response = await fetch(`${apiUrl}tipos`);
