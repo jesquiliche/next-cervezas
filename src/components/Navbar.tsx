@@ -5,7 +5,6 @@ import SearchForm from "./Busqueda";
 import CartLinkComponent from "./CartLinkComponent";
 import ButtonAuth from "./ButtonAuth";
 
-
 const Navbar = async () => {
   const paisesData = await fetchPaises();
   const paises = paisesData?.data;
@@ -155,6 +154,7 @@ const Navbar = async () => {
               </li>
               {/* Menú de usuario */}
               <li>
+                
                 <button
                   id="dropdownUserMenu"
                   data-dropdown-toggle="userMenu"
@@ -203,18 +203,10 @@ const Navbar = async () => {
                     </li>
                     <li>
                       <Link
-                        href="/configuracion"
+                        href="/Ordenes"
                         className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
                       >
-                        Configuración 
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/logout"
-                        className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
-                      >
-                        Cerrar sesión
+                        Mis pedidos
                       </Link>
                     </li>
                   </ul>

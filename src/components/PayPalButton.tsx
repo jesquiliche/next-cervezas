@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CreateOrderActions } from "@paypal/paypal-js";
 import { pagarOrden } from "@/services/api";
+import { useRouter } from "next/router";
 
 interface Props {
   pedido: any; // Interfaz de propiedades que espera recibir este componente
@@ -11,7 +12,7 @@ interface Props {
 export const PayPalButton: React.FC<Props> = ({ pedido }) => {
   // Estado para almacenar el transactionId
   const [transactionId, setTransactionId] = useState<string | null>(null);
-
+  const router = useRouter();
   // Función para crear la orden de PayPal
   const createOrder = (data: CreateOrderActions) => {
     // Mapea los artículos del pedido para construir la lista de artículos de PayPal
@@ -53,9 +54,9 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
       console.log(transactionId);
       // Guardar el transactionId en el estado del componente
       setTransactionId(transactionId);
-      const resp =  pagarOrden(pedido.orden.id.toString(), transactionId);
-       
-      // Retornar el transactionId para cualquier uso adicional
+      const resp = pagarOrden(pedido.orden.id.toString(), transactionId);
+
+      
       return transactionId;
     });
   };

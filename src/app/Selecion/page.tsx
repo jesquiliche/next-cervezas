@@ -1,9 +1,5 @@
-import {
-  fetchCervezas,
-  fetchCervezasQuery,
-  fetchCervezasQuery2,
-} from "@/services/api";
-import { CervezaData, Cerveza } from "@/interfaces/interfaces";
+import { fetchCervezasQuery2 } from "@/services/api";
+
 import ListaCervezas from "@/components/ListaCervezas";
 import Filter from "@/components/Filter";
 import Pagination from "@/components/pagination";
@@ -18,19 +14,18 @@ export default async function Page({
     graduacion_id?: string;
   };
 }) {
-  const page= Number(searchParams?.page || "")
+  const page = Number(searchParams?.page || "");
   const pais_id = Number(searchParams?.pais_id || "");
   const tipo_id = Number(searchParams?.tipo_id || "");
   const color_id = Number(searchParams?.color_id || "");
   const graduacion_id = Number(searchParams?.graduacion_id || "");
 
- 
   const construirUrl = () => {
     const parametros = [];
 
-    parametros.push(`per_page=12`)
-    if(page!==0){
-      parametros.push(`page=${page}`)
+    parametros.push(`per_page=12`);
+    if (page !== 0) {
+      parametros.push(`page=${page}`);
     }
     if (pais_id !== 0) {
       parametros.push(`pais_id=${pais_id}`);
@@ -53,9 +48,8 @@ export default async function Page({
   const cervezasData: any = await fetchCervezasQuery2(urlSearchParams);
 
   const cervezas = cervezasData.data;
-  const totalPages=cervezasData.last_page;
+  const totalPages = cervezasData.last_page;
 
-  
   return (
     <div className="py-32 w-11/12 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
@@ -63,7 +57,7 @@ export default async function Page({
           <Filter />
         </div>
         <div className="col-span-1 md:col-span-5">
-          <Pagination totalPages={totalPages}/>
+          <Pagination totalPages={totalPages} />
           <ListaCervezas cervezas={cervezas} />
         </div>
       </div>
