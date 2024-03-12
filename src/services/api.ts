@@ -59,7 +59,7 @@ export async function fetchCervezasPorPaises() {
 }
 
 export async function fetchCervezasPorTipos() {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/";
 
   try {
     const response = await fetch(`${apiUrl}consultaCervezasPorTipo`);
@@ -99,7 +99,7 @@ export async function fetchCervezasPorColores() {
 }
 
 export async function fetchCervezasPorGraduaciones() {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:1337/api/";
 
   try {
     const response = await fetch(`${apiUrl}consultaCervezasPorGraduaciones`);
@@ -404,7 +404,7 @@ export async function getPoblacionesPorProvincia(
 }
 
 export async function fetchColores(): Promise<Color[] | any> {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  const apiUrl = process.env.NEX_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
   try {
     const response = await fetch(`${apiUrl}colores`, {
       method: "GET",
@@ -486,7 +486,7 @@ export async function fetchPaisesById(id: string): Promise<Pais | undefined> {
 }
 
 export async function fetchGraduaciones(): Promise<Graduacion[]> {
-  const apiUrl = process.env.API_URL ?? "http://127.0.0.1:8000/api/v1/";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
   try {
     const response = await fetch(`${apiUrl}graduaciones`);
 

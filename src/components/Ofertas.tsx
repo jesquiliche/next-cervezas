@@ -4,7 +4,7 @@ import { PacificoFont } from "@/config/fonts";
 import ListaCervezas from "./ListaCervezas";
 
 const Ofertas = async () => {
-  const cervezasData = await fetchCervezasQuery("per_page=8 ");
+  const cervezasData = await fetchCervezasQuery("per_page=50 ");
   let cervezas: Cerveza[] = cervezasData.data;
   cervezas = cervezas.filter((c) => c.oferta != 0);
 
