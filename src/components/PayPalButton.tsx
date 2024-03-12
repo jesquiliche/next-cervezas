@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CreateOrderActions } from "@paypal/paypal-js";
 import { pagarOrden } from "@/services/api";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface Props {
   pedido: any; // Interfaz de propiedades que espera recibir este componente
