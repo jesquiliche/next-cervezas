@@ -148,13 +148,11 @@ const Navbar = async () => {
                   </ul>
                 </div>
               </li>
-
               <li>
                 <CartLinkComponent />
               </li>
               {/* Menú de usuario */}
               <li>
-                
                 <button
                   id="dropdownUserMenu"
                   data-dropdown-toggle="userMenu"
@@ -201,15 +199,25 @@ const Navbar = async () => {
                     <li className="text-md block px-3 text-dark rounded-es-md hover:text-white hover:bg-yellow-400">
                       <ButtonAuth />
                     </li>
-                    <li>
+                     <li>
                       <Link
                         href="/Ordenes"
                         className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
                       >
                         Mis pedidos
                       </Link>
-                    </li>
+                    </li>*
+                      
                   </ul>
+                 {/*
+                 } <li>
+                    <Link
+                      href="/register"
+                      className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
+                    >
+                      Registrarse
+                    </Link>
+                </li>*/}
                 </div>
               </li>
               {/* Fin del menú de usuario */}
