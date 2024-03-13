@@ -22,20 +22,22 @@ export default function Registro() {
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const apiUrl=process.env.NEXT_PUBLIC_API_URL ?? '';
+    
 
     const { name, value } = e.target;
     setUser({
       ...user,
       [name]: value
     });
-    postRegister(apiUrl,user);
+    
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const apiUrl=process.env.NEXT_PUBLIC_API_AUTH ?? '';
+    console.log(apiUrl);
     // Aquí puedes enviar los datos del formulario a tu servidor o realizar otras operaciones
-    console.log(user);
+    postRegister(apiUrl+"register",user);
   };
 
   return (
@@ -58,8 +60,8 @@ export default function Registro() {
           <label htmlFor="username">Nombre de usuario:</label>
           <input
             type="text"
-            id="username"
-            name="userName"
+            id="name"
+            name="name"
             value={user.name}
             className="form-control"
             onChange={handleChange}

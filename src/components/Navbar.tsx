@@ -206,18 +206,18 @@ const Navbar = async () => {
                       >
                         Mis pedidos
                       </Link>
-                    </li>*
+                    </li>
+                    <li>
+                      <Link
+                        href="/register"
+                        className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
+                      >
+                        Registro
+                      </Link>
+                    </li>
                       
                   </ul>
-                 {/*
-                 } <li>
-                    <Link
-                      href="/register"
-                      className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
-                    >
-                      Registrarse
-                    </Link>
-                </li>*/}
+               
                 </div>
               </li>
               {/* Fin del menú de usuario */}
