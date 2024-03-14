@@ -19,6 +19,7 @@ const FormularioDireccion: React.FC = () => {
   const [Direccion, setDireccion] = useState<Direccion>(
     useAddressStore((state) => state.address)
   );
+  const [submitting, setSubmitting] = useState(false);
   const setAddres = useAddressStore((state) => state.setAddress);
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -60,7 +61,7 @@ const FormularioDireccion: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setSubmitting(true);
     const checkboxMarcado = (e.target as HTMLFormElement).miCheckbox.checked;
     setAddres(Direccion);
     const token=session?.authorization.token ?? "";
@@ -70,6 +71,7 @@ const FormularioDireccion: React.FC = () => {
     } else {
       await fetchDeleteDireccion(String(session?.user.id),token);
     }
+    setSubmitting(false);
     router.push("/checkout");
   };
 
@@ -303,8 +305,8 @@ const FormularioDireccion: React.FC = () => {
           </div>
         </div>
         <div className="text-center mt-6 w-2/6 mx-auto">
-          <button type="submit" className="btn-primary text-md">
-            Siguiente
+        <button type="submit" className={`btn-primary text-md ${submitting ? 'bg-gray-400 cursor-not-allowed' : 'btn-primary'}`} disabled={submitting}>
+            {submitting ? "Enviando..." : "Siguiente"}
           </button>
         </div>
       </form>

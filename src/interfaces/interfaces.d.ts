@@ -197,3 +197,24 @@ interface Pedido {
   detalle: Detalle[];
   direccion: Direccion;
 }
+
+interface CervezaVentas {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  color_id: number;
+  graduacion_id: number;
+  tipo_id: number;
+  pais_id: number;
+  formato: string;
+  unidades: number;
+  stock: number;
+  created_at: string;
+  updated_at: string;
+  novedad: number;
+  oferta: number;
+  precio: string;
+  foto: string;
+  marca: string;
+  cantidad: string;
+}

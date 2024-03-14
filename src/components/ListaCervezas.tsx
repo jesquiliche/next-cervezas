@@ -2,7 +2,7 @@ import { Cerveza } from "@/interfaces/interfaces";
 import React from "react";
 import CervezaComponent from "./Cerveza";
 interface Props {
-  cervezas: Cerveza[];
+  cervezas: Cerveza[] | null;
 }
 
 const ListaCervezas = ({ cervezas }: Props) => {

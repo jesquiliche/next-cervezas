@@ -12,6 +12,7 @@ import {
   Direccion,
   Pedido,
   Orden,
+  CervezaVentas,
 } from "@/interfaces/interfaces";
 
 /**
@@ -219,7 +220,7 @@ export async function getPoblacionByCodigo(codigo: string): Promise<Poblacion> {
   const apiUrl =
     process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/";
 
-  console.log(`${apiUrl}poblaciones/${codigo}`);
+ 
   const response = await fetch(`${apiUrl}poblaciones/${codigo}`, {
     cache: "no-store",
   });
@@ -254,6 +255,27 @@ export async function getDireccionByUserId(
   return data;
   // Aquí puedes trabajar con los datos obtenidos de la API
 }
+
+export async function getMasVendidas(): Promise<Cerveza[] | null> {
+  const apiUrl =
+    process.env.API_URL ?? "http://127.0.0.1:8000/";
+
+  const response = await fetch(`${apiUrl}cervezasMasVendidas`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    //throw new Error("No se pudieron obtener los datos de la API");
+    return null;
+  }
+
+  const data = await response.json();
+
+  return data;
+ 
+}
+
+
 export async function fetchCervezasQuery(query: string) {
   const apiUrl = process.env.API_URL ?? "http://127.0.0.1:1337/api/";
   try {
@@ -358,7 +380,7 @@ export async function getPoblaciones(): Promise<Poblacion[]> {
 
   try {
     const response = await fetch(`${apiUrl}poblaciones`);
-    console.log(`${apiUrl}poblaciones`);
+   
 
     if (!response.ok) {
       console.log(response.status, response.statusText);
@@ -386,7 +408,7 @@ export async function getPoblacionesPorProvincia(
       `${apiUrl}poblaciones?provincia=${provincia}`,
       { cache: "no-store" }
     );
-    console.log(`${apiUrl}poblaciones?provincia=${provincia}`);
+   
 
     if (!response.ok) {
       console.log(response.status, response.statusText);
@@ -448,7 +470,7 @@ export async function fetchTiposById(id: string): Promise<Tipo | undefined> {
 
   try {
     const response = await fetch(`${apiUrl}tipos/${id}`);
-    console.log(`${apiUrl}tipos/${id}`);
+   
     if (!response.ok) {
       console.log(await response.status);
       //throw new Error("No se pudieron obtener los datos de la API");
@@ -687,7 +709,7 @@ export async function getPedido(id: string): Promise<Pedido> {
 export async function pagarOrden(id: string, transactionId: string): Promise<string> {
   try {
     const apiUrl: string = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
-    console.log(`${apiUrl}pagarorden/${id}`);
+   
     
     const response = await fetch(`${apiUrl}pagarorden/${id}`, {
       method: "POST",

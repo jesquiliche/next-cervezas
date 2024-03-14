@@ -1,7 +1,5 @@
-
 import { Cerveza } from "@/interfaces/interfaces";
 import { fetchCervezasQuery } from "@/services/api";
-import CervezaComponent from "./Cerveza";
 import { PacificoFont, titleFont } from "@/config/fonts";
 import ListaCervezas from "./ListaCervezas";
 

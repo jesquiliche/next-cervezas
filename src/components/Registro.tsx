@@ -35,7 +35,7 @@ export default function Registro() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const apiUrl=process.env.NEXT_PUBLIC_API_AUTH ?? '';
-    console.log(apiUrl);
+   
     // Aquí puedes enviar los datos del formulario a tu servidor o realizar otras operaciones
     postRegister(apiUrl+"register",user);
   };

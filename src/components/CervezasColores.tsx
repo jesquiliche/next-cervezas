@@ -6,7 +6,7 @@ const CervezasColores = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-11/12 mx-auto p-4">
       <div className="overflow-hidden">
-        <Link href="/Historia"></Link>
+        <Link href="/Historia">
         <div className="w-full h-full rounded-lg shadow-lg transition-transform duration-300 transform-gpu hover:scale-110">
           <img
             src="/cervezas2.jpg"
@@ -19,8 +19,10 @@ const CervezasColores = () => {
             Historia
           </h1>
         </div>
+        </Link>
       </div>
       <div className="overflow-hidden">
+        <Link href="/MasVendidas">
         <div className="w-full h-full rounded-lg shadow-lg transition-transform duration-300 transform-gpu hover:scale-110">
           <img
             src="/graduacion.jpg"
@@ -30,9 +32,11 @@ const CervezasColores = () => {
           <h1
             className={`${PacificoFont.className} text-center text-white text-shadow-title text-3xl font-bold -mt-12`}
           >
-            Por graduación
+            Más vendidas
           </h1>
+          
         </div>
+        </Link>
       </div>
       <div className="overflow-hidden">
         <Link href="/Selecion">

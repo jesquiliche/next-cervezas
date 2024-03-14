@@ -6,7 +6,7 @@ async function crearOrden(orden:any, token: string) {
   try {
     const apiUrl =
       process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000/api/v1/";
-    console.log(`${apiUrl}ordenes`);
+   
     const response = await fetch(`${apiUrl}ordenes`, {
       method: "POST",
       headers: {
@@ -52,8 +52,8 @@ const GuardarOrden = async () => {
   const token=session?.authorization.token ?? '';
 
   const respuesta=await crearOrden(orden,token);
-  console.log(respuesta);
-  alert(respuesta);
+  
+  
   
 };
 

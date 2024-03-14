@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React, { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { CreateOrderActions } from "@paypal/paypal-js";
@@ -6,16 +6,14 @@ import { pagarOrden } from "@/services/api";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  pedido: any; // Interfaz de propiedades que espera recibir este componente
+  pedido: any; // Interface for the properties expected by this component
 }
 
 export const PayPalButton: React.FC<Props> = ({ pedido }) => {
-  // Estado para almacenar el transactionId
   const [transactionId, setTransactionId] = useState<string | null>(null);
   const router = useRouter();
-  // Función para crear la orden de PayPal
+
   const createOrder = (data: CreateOrderActions) => {
-    // Mapea los artículos del pedido para construir la lista de artículos de PayPal
     const items = pedido.detalle.map((item: any) => ({
       name: item.nombre,
       unit_amount: { value: item.precio.toFixed(2), currency_code: "EUR" },
@@ -23,45 +21,45 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
       description: item.nombre,
     }));
 
-    // Crea la orden de PayPal con la información proporcionada
     return data.order.create({
-      intent: "CAPTURE", // Intento de captura de fondos
+      intent: "CAPTURE",
       purchase_units: [
         {
-          invoice_id: pedido.orden.id.toString(), // ID de la factura como identificador de la orden
+          invoice_id: pedido.orden.id.toString(),
           amount: {
-            currency_code: "EUR", // Código de moneda (Euro)
-            value: pedido.orden.total.toFixed(2), // Valor total de la orden
+            currency_code: "EUR",
+            value: pedido.orden.total.toFixed(2),
             breakdown: {
               item_total: {
                 value: pedido.orden.total.toFixed(2),
                 currency_code: "EUR",
-              }, // Detalles del total de la orden
+              },
             },
           },
-          items, // Lista de artículos de PayPal
+          items,
         },
       ],
     });
   };
 
-  // Función para manejar el evento onApprove
-  const onApprove = (data: any, actions: any) => {
-    // Capturar el evento de aprobación y realizar acciones adicionales (por ejemplo, confirmar el pago)
-    return actions.order.capture().then(function (details: any) {
-      // Obtener el transactionId de los detalles de la transacción
+  const onApprove = async (data: any, actions: any) => {
+    try {
+      const details = await actions.order.capture();
       const transactionId = details.id;
       console.log(transactionId);
-      // Guardar el transactionId en el estado del componente
       setTransactionId(transactionId);
-      const resp = pagarOrden(pedido.orden.id.toString(), transactionId);
-
       
+      // Assuming pagarOrden returns a promise, await its completion
+      await pagarOrden(pedido.orden.id.toString(), transactionId);
+      
+      router.push(`/Ordenes`);
       return transactionId;
-    });
+    } catch (error) {
+      console.error("Error capturing payment:", error);
+      // Handle error gracefully
+    }
   };
 
-  // Renderiza los botones de PayPal y maneja la creación de la orden
   return (
     <div className="relative z-0 mt-5">
       <PayPalButtons
@@ -70,8 +68,7 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
         }
         onApprove={onApprove}
       />
-      {transactionId && <p>Transaction ID: {transactionId}</p>}{" "}
-      {/* Mostrar el transactionId si está disponible */}
+      {transactionId && <p>Transaction ID: {transactionId}</p>}
     </div>
   );
 };

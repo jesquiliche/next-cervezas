@@ -1,4 +1,5 @@
 import CervezasColores from "@/components/CervezasColores";
+import MasVendidas from "@/components/MasVendidas";
 import Novedades from "@/components/Novedades";
 import Ofertas from "@/components/Ofertas";
 
@@ -23,7 +24,7 @@ export default function Home() {
       <CervezasColores />
       <Novedades/>
       <Ofertas />
-      
+           
     </main>
   );
 }

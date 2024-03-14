@@ -23,7 +23,7 @@ interface Props {
 
 export const AddressSummary = ({ address }: Props) => {
   
-  console.log(address);
+ 
   return (
     <div className="mt-3">
       <h1 className="text-xl font-bold text-center">Dirección</h1>

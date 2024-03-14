@@ -3,7 +3,8 @@ import { AddressSummary } from "./AddresSummary";
 import CartComponent from "./CartComponent";
 import { OrderSummary } from "./OrderSummary";
 import { getPedido } from "@/services/api";
-import { Pedido } from "@/interfaces/interfaces";
+
+
 
 interface Props {
   params: {
