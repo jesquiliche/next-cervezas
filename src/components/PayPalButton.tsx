@@ -25,7 +25,7 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
       intent: "CAPTURE",
       purchase_units: [
         {
-          invoice_id: pedido.orden.id.toString(),
+     //     invoice_id: pedido.orden.id.toString(),
           amount: {
             currency_code: "EUR",
             value: pedido.orden.total.toFixed(2),
