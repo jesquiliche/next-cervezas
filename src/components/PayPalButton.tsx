@@ -14,6 +14,7 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
   const router = useRouter();
 
   const createOrder = (data: CreateOrderActions) => {
+    console.log(pedido);
     const items = pedido.detalle.map((item: any) => ({
       name: item.nombre,
       unit_amount: { value: item.precio.toFixed(2), currency_code: "EUR" },
