@@ -14,7 +14,6 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
   const router = useRouter();
 
   const createOrder = (data: CreateOrderActions) => {
-    console.log(pedido);
     const items = pedido.detalle.map((item: any) => ({
       name: item.nombre,
       unit_amount: { value: item.precio.toFixed(2), currency_code: "EUR" },
@@ -22,11 +21,13 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
       description: item.nombre,
     }));
 
+    // Include address
+    const address = pedido.direccion;
+
     return data.order.create({
       intent: "CAPTURE",
       purchase_units: [
         {
-     //     invoice_id: pedido.orden.id.toString(),
           amount: {
             currency_code: "EUR",
             value: pedido.orden.total.toFixed(2),
@@ -38,6 +39,19 @@ export const PayPalButton: React.FC<Props> = ({ pedido }) => {
             },
           },
           items,
+          shipping: {
+            name: {
+              full_name: address.nombre + " " + address.apellidos,
+            },
+            address: {
+              address_line_1: address.calle + ", " + address.numero,
+              address_line_2: address.escalera ? address.escalera : '',
+              admin_area_2: address.poblacion_nombre,
+              admin_area_1: address.provincia_nombre,
+              postal_code: address.poblacion,
+              country_code: "ES", // Assuming Spain (you can change it accordingly)
+            },
+          },
         },
       ],
     });
