@@ -48,10 +48,7 @@ const handler = NextAuth({
           throw new Error("Error durante el inicio de sesión");
         }
 
-        if (res.status == 401) {
-          throw new Error("Credenciales no validas");
-          return;
-        }
+       
 
         const data = await res.json();
         return data;
