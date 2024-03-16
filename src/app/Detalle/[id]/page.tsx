@@ -61,7 +61,7 @@ const CervezaHome: React.FC<Props> = async ({ params }) => {
               <h2 className="text-sm md:text-xl">{cerveza.graduacion}</h2>
             </div>
             <div className="col-span-2 md:col-span-1">
-              <h2 className="text-sm md:text-5xl t font-bold text-center italic text-red-600 text-shadow-title">
+              <h2 className="text-xl md:text-5xl t font-bold text-center italic text-red-600 text-shadow-title">
                 {cerveza.precio} €
               </h2>
               <AddCart cerveza={cerveza} />
