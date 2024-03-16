@@ -96,6 +96,7 @@ const Navbar = () => {
                 {/* Dropdown menu de países */}
                 <div
                   id="dropdownNavbar"
+                  tabIndex={2}
                   onMouseLeave ={()=>setPaisMenuOpen(false)}
                   className={`z-10 opacity-100 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow ${
                     paisMenuOpen ? "block" : "hidden"
