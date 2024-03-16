@@ -5,7 +5,6 @@ import Link from "next/link";
 import SearchForm from "./Busqueda";
 import CartLinkComponent from "./CartLinkComponent";
 import ButtonAuth from "./ButtonAuth";
-
 import { Pais, Tipo } from "@/interfaces/interfaces";
 import { PacificoFont } from "@/config/fonts";
 
@@ -94,16 +93,14 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                {/* Dropdown menu */}
+                {/* Dropdown menu de países */}
                 <div
                   id="dropdownNavbar"
                   className={`z-10 opacity-100 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow ${
                     paisMenuOpen ? "block" : "hidden"
                   }`}
                 >
-                  <ul
-                    className="border-1 rounded-lg shadow-md py-2 text-md text-gray-700 relative" // Aquí se establece un ancho fijo de 48 unidades
-                  >
+                  <ul className="border-1 rounded-lg shadow-md py-2 text-md text-gray-700 relative">
                     {paises &&
                       paises.map((p) => (
                         <li key={p.id}>
@@ -122,7 +119,7 @@ const Navbar = () => {
               <li>
                 <button
                   id="dropdownNavbarLink"
-                  data-dropdown-toggle="dropdownTipos"
+                  onClick={() => setTiposMenuOpen(!tiposMenuOpen)}
                   className="flex items-center justify-between w-full py-2 pl-2 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto  "
                 >
                   Estilo{" "}
@@ -142,13 +139,15 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                {/* Dropdown menu */}
+                {/* Dropdown menu de estilos */}
                 <div
                   id="dropdownTipos"
-                  className="z-10  hidden absolute font-normal divide-y divide-gray-100 rounded-lg shadow   w-[500px]"
+                  className={`z-10 ${
+                    tiposMenuOpen ? "block" : "hidden"
+                  } absolute font-normal divide-y divide-gray-100 rounded-lg shadow w-[500px] right-[-00px]`}
                 >
                   <ul
-                    className="grid grid-cols-2 md:grid-cols-3 border-1  rounded-xl shadow-md bg-white py-1 text-md text-gray-700"
+                    className="grid grid-cols-2 md:grid-cols-3 border-1 rounded-xl shadow-md bg-white py-1 text-md text-gray-700"
                     aria-labelledby="dropdownLargeButton"
                   >
                     {tipos &&
@@ -157,7 +156,8 @@ const Navbar = () => {
                           <Link
                             href={`/Tipos/${t.id}`}
                             className="block text-dark hover:text-white px-4 hover:bg-yellow-400 hover:rounded-md"
-                          >
+                            onClick={() => setTiposMenuOpen(false)}
+                         >
                             {t.nombre}
                           </Link>
                         </li>
@@ -168,14 +168,12 @@ const Navbar = () => {
               <li>
                 <CartLinkComponent />
               </li>
-              {/* Menú de usuario */}
               <li>
                 <button
                   id="dropdownUserMenu"
                   data-dropdown-toggle="userMenu"
                   className="flex items-center justify-between w-full py-2 pl-2 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto"
                 >
-                  {/*Usuario*/}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -235,7 +233,6 @@ const Navbar = () => {
                   </ul>
                 </div>
               </li>
-              {/* Fin del menú de usuario */}
             </ul>
           </div>
         </div>
