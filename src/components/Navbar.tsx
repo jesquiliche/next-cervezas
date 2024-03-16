@@ -96,6 +96,7 @@ const Navbar = () => {
                 {/* Dropdown menu de países */}
                 <div
                   id="dropdownNavbar"
+                  onMouseLeave ={()=>setPaisMenuOpen(false)}
                   className={`z-10 opacity-100 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow ${
                     paisMenuOpen ? "block" : "hidden"
                   }`}
@@ -142,6 +143,8 @@ const Navbar = () => {
                 {/* Dropdown menu de estilos */}
                 <div
                   id="dropdownTipos"
+                  tabIndex={1}
+                  onMouseLeave ={()=>setTiposMenuOpen(false)}
                   className={`z-10 ${
                     tiposMenuOpen ? "block" : "hidden"
                   } absolute font-normal divide-y divide-gray-100 rounded-lg shadow w-[500px] right-[-00px]`}
