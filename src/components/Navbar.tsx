@@ -1,16 +1,31 @@
-import { PacificoFont } from "@/config/fonts";
+"use client";
+import { useEffect, useState } from "react";
 import { fetchPaises, fetchTipos } from "@/services/api";
 import Link from "next/link";
 import SearchForm from "./Busqueda";
 import CartLinkComponent from "./CartLinkComponent";
 import ButtonAuth from "./ButtonAuth";
 
-const Navbar = async () => {
-  const paisesData = await fetchPaises();
-  const paises = paisesData?.data;
+import { Pais, Tipo } from "@/interfaces/interfaces";
+import { PacificoFont } from "@/config/fonts";
 
-  const tiposData = await fetchTipos();
-  const tipos = tiposData.data;
+const Navbar = () => {
+  const [paises, setPaises] = useState<Pais[]>([]);
+  const [tipos, setTipos] = useState<Tipo[]>([]);
+  const [tiposMenuOpen, setTiposMenuOpen] = useState(false);
+  const [paisMenuOpen, setPaisMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const paisesData = await fetchPaises();
+      const tiposData = await fetchTipos();
+
+      setPaises(paisesData?.data || []);
+      setTipos(tiposData.data || []);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -56,11 +71,11 @@ const Navbar = async () => {
             id="navbar-dropdown"
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0">
-              <li>
+              <li className="md:absolute md:-mx-8">
                 <button
                   id="dropdownNavbarLink"
-                  data-dropdown-toggle="dropdownNavbar"
-                  className="flex items-center justify-between w-full py-2 pl-2 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto"
+                  onClick={() => setPaisMenuOpen(!paisMenuOpen)}
+                  className="flex items-center justify-between  py-2 pl-2 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto"
                 >
                   Pais{" "}
                   <svg
@@ -82,11 +97,12 @@ const Navbar = async () => {
                 {/* Dropdown menu */}
                 <div
                   id="dropdownNavbar"
-                  className="z-10 opacity-100 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+                  className={`z-10 opacity-100 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow ${
+                    paisMenuOpen ? "block" : "hidden"
+                  }`}
                 >
                   <ul
-                    className="border-1 rounded-lg shadow-md py-2 text-md text-gray-700"
-                    aria-labelledby="dropdownLargeButton"
+                    className="border-1 rounded-lg shadow-md py-2 text-md text-gray-700 relative" // Aquí se establece un ancho fijo de 48 unidades
                   >
                     {paises &&
                       paises.map((p) => (
@@ -94,6 +110,7 @@ const Navbar = async () => {
                           <Link
                             href={`/Paises/${p.id}`}
                             className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
+                            onClick={() => setPaisMenuOpen(false)}
                           >
                             {p.nombre}
                           </Link>
@@ -199,7 +216,7 @@ const Navbar = async () => {
                     <li className="text-md block px-3 text-dark rounded-es-md hover:text-white hover:bg-yellow-400">
                       <ButtonAuth />
                     </li>
-                     <li>
+                    <li>
                       <Link
                         href="/Ordenes"
                         className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
@@ -215,9 +232,7 @@ const Navbar = async () => {
                         Registro
                       </Link>
                     </li>
-                      
                   </ul>
-               
                 </div>
               </li>
               {/* Fin del menú de usuario */}
