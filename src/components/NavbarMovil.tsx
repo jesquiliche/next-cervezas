@@ -76,7 +76,7 @@ const NavbarMovil = () => {
           } sm:hidden w-full md:block md:w-auto`}
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0"
-          onMouseLeave={() => setMenuOpen(false)}
+         
           >
             <li className="md:absolute md:-mx-8">
               <button
