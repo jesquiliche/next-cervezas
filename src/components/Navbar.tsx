@@ -41,6 +41,7 @@ const Navbar = () => {
           <div>
             <SearchForm />
           </div>
+          {/* Menu hamburquesa */}
           <button
             data-collapse-toggle="navbar-dropdown"
             type="button"
@@ -66,7 +67,7 @@ const Navbar = () => {
             </svg>
           </button>
           <div
-            className="hidden w-full md:block md:w-auto"
+            className="block sm:hidden w-full md:block md:w-auto"
             id="navbar-dropdown"
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0">
@@ -96,8 +97,7 @@ const Navbar = () => {
                 {/* Dropdown menu de países */}
                 <div
                   id="dropdownNavbar"
-                  tabIndex={2}
-                  onMouseLeave ={()=>setPaisMenuOpen(false)}
+                  onMouseLeave={() => setPaisMenuOpen(false)}
                   className={`z-10 opacity-100 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow ${
                     paisMenuOpen ? "block" : "hidden"
                   }`}
@@ -145,7 +145,7 @@ const Navbar = () => {
                 <div
                   id="dropdownTipos"
                   tabIndex={1}
-                  onMouseLeave ={()=>setTiposMenuOpen(false)}
+                  onMouseLeave={() => setTiposMenuOpen(false)}
                   className={`z-10 ${
                     tiposMenuOpen ? "block" : "hidden"
                   } absolute font-normal divide-y divide-gray-100 rounded-lg shadow w-[500px] right-[-00px]`}
@@ -161,7 +161,7 @@ const Navbar = () => {
                             href={`/Tipos/${t.id}`}
                             className="block text-dark hover:text-white px-4 hover:bg-yellow-400 hover:rounded-md"
                             onClick={() => setTiposMenuOpen(false)}
-                         >
+                          >
                             {t.nombre}
                           </Link>
                         </li>
