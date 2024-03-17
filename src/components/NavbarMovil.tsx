@@ -35,7 +35,7 @@ const NavbarMovil = () => {
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
           <Link href="/" className="flex items-center">
-            <img src="/LOGO.png" className="h-20 mr-3" alt="Logo" />
+            <img src="/LOGO.png" className="h-16 mr-3" alt="Logo" />
             <span
               className={`${PacificoFont.className} hidden lg:block text-3xl font-semibold whitespace-nowrap`}
             >
@@ -68,6 +68,8 @@ const NavbarMovil = () => {
               />
             </svg>
           </button>
+          <CartLinkComponent />
+          
         </div>
         <div
           tabIndex={1}
@@ -173,9 +175,7 @@ const NavbarMovil = () => {
                 </ul>
               </div>
             </li>
-            <li>
-              <CartLinkComponent />
-            </li>
+          
             <li>
               <button
                 id="dropdownUserMenu"
