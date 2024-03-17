@@ -45,6 +45,7 @@ const NavbarMovil = () => {
           <div>
             <SearchForm />
           </div>
+          <CartLinkComponent />
           {/* Menu hamburquesa */}
           <button
             type="button"
@@ -68,7 +69,7 @@ const NavbarMovil = () => {
               />
             </svg>
           </button>
-          <CartLinkComponent />
+          
           
         </div>
         <div
