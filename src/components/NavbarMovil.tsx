@@ -29,7 +29,10 @@ const NavbarMovil = () => {
 
   return (
     <>
-      <nav className="bg-white border opacity-95 w-full shadow-md fixed z-50">
+      <nav
+        onMouseLeave={() => setMenuOpen(false)}
+        className="bg-white border opacity-95 w-full shadow-md fixed z-50"
+      >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
           <Link href="/" className="flex items-center">
             <img src="/LOGO.png" className="h-20 mr-3" alt="Logo" />
@@ -68,16 +71,11 @@ const NavbarMovil = () => {
         </div>
         <div
           tabIndex={1}
-          
-          
-          onMouseLeave={() => setMenuOpen(false)}
           className={`${
             menuOpen ? "block" : "hidden"
           } sm:hidden w-full md:block md:w-auto`}
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0"
-         
-          >
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 bg-white md:flex-row md:space-x-8 md:mt-0">
             <li className="md:absolute md:-mx-8">
               <button
                 id="dropdownNavbarLink"
@@ -104,7 +102,7 @@ const NavbarMovil = () => {
               {/* Dropdown menu de países */}
               <div
                 id="dropdownNavbar"
-                onMouseLeave={() => setPaisMenuOpen(false)}
+                onClick={() => setPaisMenuOpen(false)}
                 className={`z-10 opacity-100 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow ${
                   paisMenuOpen ? "block" : "hidden"
                 }`}
@@ -152,7 +150,6 @@ const NavbarMovil = () => {
               <div
                 id="dropdownTipos"
                 tabIndex={1}
-                onMouseLeave={() => setTiposMenuOpen(false)}
                 className={`z-10 ${
                   tiposMenuOpen ? "block" : "hidden"
                 } absolute font-normal divide-y divide-gray-100 rounded-lg shadow w-[500px] right-[-00px]`}
