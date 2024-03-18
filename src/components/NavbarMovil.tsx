@@ -227,6 +227,7 @@ const NavbarMovil = () => {
                   <li>
                     <Link
                       href="/Ordenes"
+                      onClick={()=>setMenuOpen(false)}
                       className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
                     >
                       Mis pedidos
@@ -235,6 +236,7 @@ const NavbarMovil = () => {
                   <li>
                     <Link
                       href="/register"
+                      onClick={()=>setMenuOpen(false)}
                       className="text-md block px-4 text-dark rounded-es-md hover:text-white hover:bg-yellow-400"
                     >
                       Registro
