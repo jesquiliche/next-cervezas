@@ -66,6 +66,11 @@ const handler = NextAuth({
       return session;
     },
   },
+  session: {
+    // Configurar el tiempo de vida del token JWT a 24 horas (86400 segundos)
+    jwt: true,
+    maxAge: 3600,
+  },
   pages: {
   //  signIn: "/Login",
     signOut: "/auth/signout",

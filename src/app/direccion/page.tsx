@@ -1,4 +1,5 @@
 "use client";
+import isTokenExpired from "@/lib/SessionExpire";
 import { useSession } from "next-auth/react";
 import { Poblacion, Provincia, Direccion } from "@/interfaces/interfaces";
 import {
@@ -31,7 +32,7 @@ const FormularioDireccion: React.FC = () => {
   useEffect(() => {
     const getData = async () => {
       setProvincias(await getProvincias());
-      
+
       if (Direccion.poblacion != "") {
         setPoblaciones(await getPoblacionesPorProvincia(Direccion.provincia));
       }
@@ -62,14 +63,18 @@ const FormularioDireccion: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+    console.log(session);
+    console.log(session?.expires);
+    if (isTokenExpired(session)) {
+      alert("Sesion expirada");
+    }
     const checkboxMarcado = (e.target as HTMLFormElement).miCheckbox.checked;
     setAddres(Direccion);
-    const token=session?.authorization.token ?? "";
+    const token = session?.authorization.token ?? "";
     if (checkboxMarcado) {
-      
-      await postDireccion(Direccion,token);
+      await postDireccion(Direccion, token);
     } else {
-      await fetchDeleteDireccion(String(session?.user.id),token);
+      await fetchDeleteDireccion(String(session?.user.id), token);
     }
     setSubmitting(false);
     router.push("/checkout");
@@ -254,7 +259,6 @@ const FormularioDireccion: React.FC = () => {
                     key={p.codigo}
                     value={p.codigo}
                     selected={p.codigo === Direccion.provincia}
-                    
                   >
                     {p.nombre}
                   </option>
@@ -305,7 +309,13 @@ const FormularioDireccion: React.FC = () => {
           </div>
         </div>
         <div className="text-center mt-6 w-2/6 mx-auto">
-        <button type="submit" className={`btn-primary text-md ${submitting ? 'bg-gray-400 cursor-not-allowed' : 'btn-primary'}`} disabled={submitting}>
+          <button
+            type="submit"
+            className={`btn-primary text-md ${
+              submitting ? "bg-gray-400 cursor-not-allowed" : "btn-primary"
+            }`}
+            disabled={submitting}
+          >
             {submitting ? "Enviando..." : "Siguiente"}
           </button>
         </div>

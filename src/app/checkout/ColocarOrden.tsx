@@ -1,8 +1,9 @@
 "use client";
+import { signIn, signOut, useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { useAddressStore } from "@/store/address-store";
-import { useSession } from "next-auth/react";
+
 import { useRouter } from "next/navigation";
 
 const ColocarOrden: React.FC = () => {
@@ -38,7 +39,7 @@ const ColocarOrden: React.FC = () => {
 
     const token: string = session?.authorization.token ?? "";
     const resp: string = await crearOrden(orden, token);
-    removeCart();
+    
     setOrdenEnProceso(false); // Deshabilitar estado de orden en proceso
     
   };
@@ -61,19 +62,24 @@ const ColocarOrden: React.FC = () => {
       if (response.ok) {
         console.log("Datos enviados correctamente.");
         const orden = await response.json();
+        removeCart();
         router.push(`/pagar/${orden.orden.id}`);
       } else {
         const error = await response.json();
+        console.log(error)
         setError(error.error);
       }
       return "ok";
     } catch (error: any) {
+      alert("Sú sesión ha caducado");
+      signIn();
       return error.message;
     }
   }
 
   return (
     <div>
+      {error}
       <button
         type="button"
         className={`btn-primary mt-5 ${ordenEnProceso ? "disabled" : ""}`} // Agregar clase 'disabled' si la orden está en proceso

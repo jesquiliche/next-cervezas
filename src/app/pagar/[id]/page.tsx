@@ -34,7 +34,7 @@ export default async function PagarHome({ params }: Props) {
             
             <div className="font-bold">
               <h2>Número de tarjeta</h2>
-              <h2> Fecha de caducidad Código</h2>
+              <h2> Fecha de caducidad</h2>
               <h2>CVC</h2>
             </div>
             <div>
