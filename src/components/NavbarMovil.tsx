@@ -13,6 +13,7 @@ const NavbarMovil = () => {
   const [tipos, setTipos] = useState<Tipo[]>([]);
   const [tiposMenuOpen, setTiposMenuOpen] = useState(false);
   const [paisMenuOpen, setPaisMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -180,7 +181,7 @@ const NavbarMovil = () => {
             <li>
               <button
                 id="dropdownUserMenu"
-                data-dropdown-toggle="userMenu"
+                onClick={()=>setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center justify-between w-full py-2 pl-2 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-400 md:p-0 md:w-auto"
               >
                 <svg
@@ -214,7 +215,7 @@ const NavbarMovil = () => {
               {/* Menú desplegable de usuario */}
               <div
                 id="userMenu"
-                className="z-10 opacity-100 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+                className={`${userMenuOpen ? 'block':'hidden'} z-10 opacity-100 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44`}
               >
                 <ul
                   className="border-1 rounded-lg shadow-md py-2 text-md text-gray-700"

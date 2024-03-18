@@ -30,7 +30,7 @@ const ListaPedidosUsuario: React.FC = () => {
       <h2 className="text-2xl mb-5 text-center font-bold">
         Pedidos del Usuario {session?.user.name}
       </h2>
-      <div className="grid grid-cols-5 gap-4 w-11/12 mx-auto">
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-5 md:gap-4 w-11/12 mx-auto">
         {pedidos.map((pedido) => (
           <div key={pedido.id} className="p-2 border-2 rounded-md">
             <Link href={`/pagar/${pedido.id}`}>
