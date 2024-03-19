@@ -5,5 +5,6 @@ export const config = {
   "/cart:path*",  
   "/direccion:path*",
   "/Ordenes:path*",
+  "/checkout:path*",
 ]
 };
