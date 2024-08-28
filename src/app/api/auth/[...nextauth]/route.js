@@ -47,12 +47,7 @@ const handler = NextAuth({
           console.error("Error during login:", error);
           throw new Error("Error durante el inicio de sesión");
         }
-
-       
-
-        const data = await res.json();
-        return data;
-   
+      
       },
     }),
   ],
